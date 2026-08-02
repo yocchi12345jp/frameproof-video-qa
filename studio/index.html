@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>FrameProof Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skip.main">メインコンテンツへ移動</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="メインナビゲーション">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span class="brand-copy"><strong>FrameProof</strong><small>Studio</small></span>
+      </div>
+      <nav class="nav-list">
+        <button class="nav-item is-active" data-view="dashboard" type="button"><span class="icon" aria-hidden="true">⌂</span><span data-i18n="nav.dashboard">ダッシュボード</span></button>
+        <button class="nav-item" data-view="scan" type="button"><span class="icon" aria-hidden="true">＋</span><span data-i18n="nav.scan">新しいスキャン</span></button>
+        <button class="nav-item" data-view="reports" type="button"><span class="icon" aria-hidden="true">▤</span><span data-i18n="nav.reports">レポート</span></button>
+        <button class="nav-item" data-view="rules" type="button"><span class="icon" aria-hidden="true">✓</span><span data-i18n="nav.rules">ルール</span></button>
+        <button class="nav-item" data-view="settings" type="button"><span class="icon" aria-hidden="true">⚙</span><span data-i18n="nav.settings">設定</span></button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="status-button" id="environment-button" type="button">
+          <span class="status-dot" id="environment-dot" aria-hidden="true"></span>
+          <span><strong id="environment-title">環境を確認中</strong><small id="environment-detail">FFmpeg / FFprobe</small></span>
+        </button>
+        <button class="nav-item compact" id="open-command" type="button"><span class="icon" aria-hidden="true">⌘</span><span data-i18n="nav.command">コマンド</span><kbd>⌘K</kbd></button>
+      </div>
+    </aside>
+
+    <main id="main-content" class="main-content" tabindex="-1">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="page-eyebrow">FrameProof Studio</p>
+          <h1 id="page-title">ダッシュボード</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="button secondary" id="refresh-button" type="button"><span aria-hidden="true">↻</span><span data-i18n="action.refresh">更新</span></button>
+          <button class="button primary" id="new-scan-button" type="button"><span aria-hidden="true">＋</span><span data-i18n="action.newScan">新しいスキャン</span></button>
+        </div>
+      </header>
+
+      <section class="view is-visible" data-view-panel="dashboard" aria-labelledby="dashboard-heading">
+        <h2 class="sr-only" id="dashboard-heading">ダッシュボード</h2>
+        <div class="metric-grid" id="metric-grid">
+          <article class="metric"><span data-i18n="metric.total">スキャン数</span><strong id="metric-total">0</strong><small data-i18n="metric.totalHelp">保存済みレポート</small></article>
+          <article class="metric error"><span data-i18n="metric.errors">エラー</span><strong id="metric-errors">0</strong><small data-i18n="metric.errorsHelp">公開前に修正が必要</small></article>
+          <article class="metric warning"><span data-i18n="metric.warnings">警告</span><strong id="metric-warnings">0</strong><small data-i18n="metric.warningsHelp">確認を推奨</small></article>
+          <article class="metric success"><span data-i18n="metric.passed">合格</span><strong id="metric-passed">0</strong><small data-i18n="metric.passedHelp">エラーなし</small></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="surface recent-surface" aria-labelledby="recent-heading">
+            <div class="section-header">
+              <div><h2 id="recent-heading" data-i18n="dashboard.recent">最近のスキャン</h2><p data-i18n="dashboard.recentHelp">結果を選ぶと詳細レポートを開きます。</p></div>
+              <button class="text-button" data-go-view="reports" type="button" data-i18n="action.viewAll">すべて表示</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th data-i18n="table.file">ファイル</th><th data-i18n="table.result">結果</th><th data-i18n="table.preset">プリセット</th><th data-i18n="table.date">日時</th></tr></thead>
+                <tbody id="recent-table-body"></tbody>
+              </table>
+              <div class="empty-state" id="recent-empty">
+                <span class="empty-icon" aria-hidden="true">◎</span>
+                <h3 data-i18n="empty.noReports">まだレポートがありません</h3>
+                <p data-i18n="empty.noReportsHelp">最初の動画を追加すると、結果がここに保存されます。</p>
+                <button class="button primary" data-go-view="scan" type="button" data-i18n="action.startScan">スキャンを開始</button>
+              </div>
+            </div>
+          </section>
+
+          <aside class="surface quick-surface" aria-labelledby="quick-heading">
+            <div class="section-header"><div><h2 id="quick-heading" data-i18n="dashboard.quick">すぐに始める</h2><p data-i18n="dashboard.quickHelp">推奨設定なら3つの操作だけです。</p></div></div>
+            <ol class="quick-steps">
+              <li><span>1</span><div><strong data-i18n="quick.add">動画を追加</strong><small data-i18n="quick.addHelp">ドラッグ、選択、またはパス入力</small></div></li>
+              <li><span>2</span><div><strong data-i18n="quick.profile">投稿先を選択</strong><small data-i18n="quick.profileHelp">不明な場合は推奨のまま</small></div></li>
+              <li><span>3</span><div><strong data-i18n="quick.scan">スキャンを実行</strong><small data-i18n="quick.scanHelp">問題箇所へ直接ジャンプ</small></div></li>
+            </ol>
+            <button class="button primary full" data-go-view="scan" type="button" data-i18n="action.newScan">新しいスキャン</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="scan" aria-labelledby="scan-heading">
+        <h2 class="sr-only" id="scan-heading" data-i18n="nav.scan">新しいスキャン</h2>
+        <div id="scan-setup" class="scan-layout">
+          <div class="scan-form-column">
+            <section class="surface setup-section">
+              <div class="step-heading"><span>1</span><div><h2 data-i18n="scan.source">動画を追加</h2><p data-i18n="scan.sourceHelp">ファイルはローカル環境から外部へ送信されません。</p></div></div>
+              <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-describedby="drop-description">
+                <input id="file-input" type="file" accept="video/*,.mp4,.mov,.webm,.mkv,.m4v" hidden>
+                <span class="drop-icon" aria-hidden="true">⇧</span>
+                <strong data-i18n="drop.title">動画をここにドロップ</strong>
+                <p id="drop-description" data-i18n="drop.help">またはクリックしてファイルを選択</p>
+                <small data-i18n="drop.private">localhost上でのみ処理します</small>
+                <div class="upload-progress" id="upload-progress" hidden><div id="upload-progress-bar"></div></div>
+              </div>
+              <div class="or-divider"><span data-i18n="common.or">または</span></div>
+              <form class="path-form" id="path-form">
+                <label for="path-input" data-i18n="path.label">ローカルファイルのパス</label>
+                <div class="input-action"><input id="path-input" name="path" type="text" autocomplete="off" placeholder="C:\Videos\render.mp4"><button class="button secondary" type="submit" data-i18n="action.usePath">パスを使用</button></div>
+              </form>
+              <div class="selected-file" id="selected-file" hidden>
+                <span class="file-icon" aria-hidden="true">▶</span>
+                <div><strong id="selected-name"></strong><small id="selected-metadata"></small></div>
+                <button class="icon-button" id="clear-file" type="button" aria-label="選択を解除">×</button>
+              </div>
+            </section>
+
+            <section class="surface setup-section">
+              <div class="step-heading"><span>2</span><div><h2 data-i18n="scan.profile">用途を選択</h2><p data-i18n="scan.profileHelp">迷った場合は「推奨」を選ぶだけで構いません。</p></div></div>
+              <div class="mode-selector" role="radiogroup" aria-label="設定モード">
+                <button class="mode-card is-selected" type="button" role="radio" aria-checked="true" data-mode="recommended"><span class="mode-icon">◎</span><strong data-i18n="mode.recommended">推奨</strong><small data-i18n="mode.recommendedHelp">品質と速度のバランス</small></button>
+                <button class="mode-card" type="button" role="radio" aria-checked="false" data-mode="fast"><span class="mode-icon">⚡</span><strong data-i18n="mode.fast">高速</strong><small data-i18n="mode.fastHelp">短時間の事前確認</small></button>
+                <button class="mode-card" type="button" role="radio" aria-checked="false" data-mode="strict"><span class="mode-icon">◆</span><strong data-i18n="mode.strict">厳格</strong><small data-i18n="mode.strictHelp">警告も失敗として扱う</small></button>
+              </div>
+              <div class="form-grid two">
+                <label><span data-i18n="field.platform">投稿先</span><select id="preset-select"><option value="x-video" data-i18n="preset.xVideo">X 通常動画</option><option value="x-ad" data-i18n="preset.xAd">X 動画広告</option><option value="" data-i18n="preset.custom">カスタム / 指定なし</option></select><small data-i18n="field.platformHelp">技術仕様を自動適用します。</small></label>
+                <label><span data-i18n="field.aspect">期待する比率</span><select id="aspect-select"><option value="auto" data-i18n="aspect.auto">動画から自動</option><option value="16:9" data-i18n="aspect.landscape">16:9 横長</option><option value="9:16" data-i18n="aspect.vertical">9:16 縦長</option><option value="1:1" data-i18n="aspect.square">1:1 正方形</option><option value="4:5" data-i18n="aspect.portrait">4:5 縦長</option></select><small data-i18n="field.aspectHelp">自動では選択動画の比率を使用します。</small></label>
+              </div>
+            </section>
+
+            <section class="surface setup-section">
+              <div class="step-heading"><span>3</span><div><h2 data-i18n="scan.rules">確認するルール</h2><p data-i18n="scan.rulesHelp">よく使うルールだけを表示しています。</p></div></div>
+              <div class="rule-list" id="rule-list">
+                <label class="rule-row"><span class="rule-symbol error-symbol">■</span><span><strong data-i18n="rule.blank">空白フレーム</strong><small data-i18n="rule.blankHelp">真っ黒・真っ白・ほぼ空のフレーム</small></span><input id="rule-blank" type="checkbox" checked role="switch"></label>
+                <label class="rule-row"><span class="rule-symbol warning-symbol">▰</span><span><strong data-i18n="rule.frozen">映像の停止</strong><small data-i18n="rule.frozenHelp">意図しない長時間の静止</small></span><input id="rule-frozen" type="checkbox" checked role="switch"></label>
+                <label class="rule-row"><span class="rule-symbol success-symbol">▣</span><span><strong data-i18n="rule.edge">セーフエリア</strong><small data-i18n="rule.edgeHelp">画面端の字幕・UI・罫線リスク</small></span><input id="rule-edge" type="checkbox" checked role="switch"></label>
+                <label class="rule-row"><span class="rule-symbol info-symbol">◇</span><span><strong data-i18n="rule.aspect">比率と解像度</strong><small data-i18n="rule.aspectHelp">縦横比と投稿先の解像度</small></span><input id="rule-aspect" type="checkbox" checked role="switch"></label>
+                <label class="rule-row"><span class="rule-symbol info-symbol">⌁</span><span><strong data-i18n="rule.platform">投稿先の技術仕様</strong><small data-i18n="rule.platformHelp">コーデック、FPS、尺、容量</small></span><input id="rule-platform" type="checkbox" checked role="switch"></label>
+                <label class="rule-row"><span class="rule-symbol info-symbol">CC</span><span><strong data-i18n="rule.captions">字幕データ</strong><small data-i18n="rule.captionsHelp">SRT・VTT・Caption JSONの読速、改行、重なり</small></span><input id="rule-captions" type="checkbox" checked role="switch"></label>
+                <label class="rule-row"><span class="rule-symbol warning-symbol">♪</span><span><strong data-i18n="rule.audio">音声の完全性</strong><small data-i18n="rule.audioHelp">無音区間、ラウドネス、音声トラック欠落</small></span><input id="rule-audio" type="checkbox" role="switch"></label>
+              </div>
+              <details class="advanced" id="advanced-settings">
+                <summary><span data-i18n="advanced.title">詳細設定</span><small data-i18n="advanced.help">必要な場合のみ変更</small></summary>
+                <div class="advanced-body">
+                  <label class="slider-field"><span><strong data-i18n="advanced.freeze">停止と判断する時間</strong><output id="freeze-output">2.5秒</output></span><input id="freeze-slider" type="range" min="0.5" max="10" step="0.5" value="2.5"></label>
+                  <label class="slider-field"><span><strong data-i18n="advanced.margin">セーフマージン</strong><output id="margin-output">5%</output></span><input id="margin-slider" type="range" min="1" max="20" step="1" value="5"></label>
+                  <label class="slider-field"><span><strong data-i18n="advanced.edge">端の密度しきい値</strong><output id="edge-output">8%</output></span><input id="edge-slider" type="range" min="1" max="30" step="1" value="8"></label>
+                  <label class="field-row"><span><strong data-i18n="advanced.frameLimit">解析フレーム上限</strong><small data-i18n="advanced.frameLimitHelp">空欄なら動画全体</small></span><input id="max-frames-input" type="number" min="1" step="1" placeholder="制限なし"></label>
+                  <div class="advanced-divider"><strong data-i18n="advanced.sourceAware">ソース対応（任意）</strong><small data-i18n="advanced.sourceAwareHelp">指定すると問題をComposition・Sequence・ソースファイルへ戻します。</small></div>
+                  <label class="field-row stacked"><span><strong data-i18n="advanced.manifest">Render Manifest</strong><small data-i18n="advanced.manifestHelp">.frameproof/manifest.json など</small></span><input id="manifest-path-input" type="text" placeholder="C:\project\.frameproof\manifest.json"></label>
+                  <label class="field-row stacked"><span><strong data-i18n="advanced.captions">字幕ファイル</strong><small data-i18n="advanced.captionsHelp">.srt / .vtt / .json</small></span><input id="captions-path-input" type="text" placeholder="C:\project\captions.srt"></label>
+                  <label class="field-row"><span><strong data-i18n="advanced.captionLanguage">字幕言語</strong><small data-i18n="advanced.captionLanguageHelp">自動判定、日本語、英語</small></span><select id="caption-language-select"><option value="auto" data-i18n="option.auto">自動</option><option value="ja" data-i18n="option.japanese">日本語</option><option value="en">English</option></select></label>
+                  <label class="field-row"><span><strong data-i18n="advanced.platformPreview">Platform Preview</strong><small data-i18n="advanced.platformPreviewHelp">プレビュー上へ投稿先UIの目安を表示</small></span><select id="overlay-select"><option value="auto" data-i18n="overlay.auto">プリセットに合わせる</option><option value="tiktok-in-feed">TikTok In-Feed</option><option value="instagram-reels">Instagram Reels</option><option value="youtube-shorts">YouTube Shorts</option><option value="x-video">X Video</option><option value="none" data-i18n="overlay.none">表示しない</option></select></label>
+                  <div class="advanced-divider"><strong data-i18n="advanced.revision">改訂比較（任意）</strong><small data-i18n="advanced.revisionHelp">前回レポートと比較し、新規・悪化・解消を分類します。</small></div>
+                  <label class="field-row stacked"><span><strong data-i18n="advanced.baseline">基準レポート</strong><small data-i18n="advanced.baselineHelp">保存済みレポート名、またはJSONのパス</small></span><input id="baseline-report-input" type="text" list="recent-report-options" placeholder="2026-08-02-video.json"><datalist id="recent-report-options"></datalist></label>
+                  <label class="field-row stacked"><span><strong data-i18n="advanced.acceptances">許容済み指摘</strong><small data-i18n="advanced.acceptancesHelp">レビュー済み指摘を次回以降も引き継ぎます。</small></span><input id="acceptances-path-input" type="text" value=".frameproof/acceptances.json" placeholder=".frameproof/acceptances.json"></label>
+                  <button class="text-button" id="reset-settings" type="button" data-i18n="action.resetRecommended">推奨値に戻す</button>
+                </div>
+              </details>
+            </section>
+          </div>
+
+          <aside class="scan-summary-column">
+            <section class="surface sticky-summary">
+              <h2 data-i18n="summary.title">スキャン内容</h2>
+              <dl class="summary-list">
+                <div><dt data-i18n="table.file">ファイル</dt><dd id="summary-file">未選択</dd></div>
+                <div><dt data-i18n="field.platform">投稿先</dt><dd id="summary-preset">X 通常動画</dd></div>
+                <div><dt data-i18n="field.aspect">期待する比率</dt><dd id="summary-aspect">自動</dd></div>
+                <div><dt data-i18n="summary.mode">設定モード</dt><dd id="summary-mode">推奨</dd></div>
+                <div><dt data-i18n="summary.rules">有効ルール</dt><dd id="summary-rules">7</dd></div><div><dt data-i18n="summary.sourceMode">スキャン方式</dt><dd id="summary-source-mode">ファイルのみ</dd></div><div><dt data-i18n="summary.revisionMode">改訂比較</dt><dd id="summary-revision-mode">なし</dd></div>
+              </dl>
+              <div class="privacy-note"><span aria-hidden="true">⌾</span><p><strong data-i18n="privacy.local">ローカル処理</strong><small data-i18n="privacy.localHelp">動画は外部サーバーへアップロードしません。</small></p></div>
+              <button class="button primary full large" id="run-scan" type="button" disabled><span aria-hidden="true">▶</span><span data-i18n="action.runScan">スキャンを実行</span></button>
+              <button class="text-button command-preview-button" id="show-command" type="button" data-i18n="action.showCommand">CLIコマンドを確認</button>
+            </section>
+          </aside>
+        </div>
+
+        <div id="scan-progress-panel" class="surface progress-panel" hidden aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
+          <div><h2 data-i18n="progress.scanning">動画を解析しています</h2><p id="progress-message">フレームを読み込み、ルールを確認しています。</p></div>
+          <div class="indeterminate"><span></span></div>
+        </div>
+
+        <div id="scan-result" hidden></div>
+      </section>
+
+      <section class="view" data-view-panel="reports" aria-labelledby="reports-heading">
+        <div class="section-header page-section-header"><div><h2 id="reports-heading" data-i18n="reports.title">レポート</h2><p data-i18n="reports.help">保存された監査結果を確認できます。</p></div></div>
+        <section class="surface"><div id="reports-list" class="report-list"></div><div class="empty-state" id="reports-empty"><span class="empty-icon">▤</span><h3 data-i18n="empty.noReports">まだレポートがありません</h3><p data-i18n="empty.noReportsHelp">最初の動画を追加すると、結果がここに保存されます。</p><button class="button primary" data-go-view="scan" type="button" data-i18n="action.startScan">スキャンを開始</button></div></section>
+      </section>
+
+      <section class="view" data-view-panel="rules" aria-labelledby="rules-heading">
+        <div class="section-header page-section-header"><div><h2 id="rules-heading" data-i18n="rules.title">ルール</h2><p data-i18n="rules.help">各検査の目的と推奨値を確認できます。</p></div></div>
+        <div class="rule-catalog" id="rule-catalog"></div>
+      </section>
+
+      <section class="view" data-view-panel="settings" aria-labelledby="settings-heading">
+        <div class="section-header page-section-header"><div><h2 id="settings-heading" data-i18n="settings.title">設定</h2><p data-i18n="settings.help">表示と操作方法を変更します。</p></div></div>
+        <div class="settings-layout">
+          <section class="surface settings-section"><h3 data-i18n="settings.appearance">外観</h3><div class="setting-row"><div><strong data-i18n="settings.theme">テーマ</strong><small data-i18n="settings.themeHelp">OSの設定に合わせることを推奨します。</small></div><div class="segmented" id="theme-segment"><button data-theme-choice="system" class="is-selected" type="button" data-i18n="theme.system">システム</button><button data-theme-choice="light" type="button" data-i18n="theme.light">ライト</button><button data-theme-choice="dark" type="button" data-i18n="theme.dark">ダーク</button></div></div><div class="setting-row"><div><strong data-i18n="settings.language">言語</strong><small data-i18n="settings.languageHelp">画面の表示言語です。</small></div><select id="language-select"><option value="auto" data-i18n="option.auto">自動</option><option value="ja" data-i18n="option.japanese">日本語</option><option value="en">English</option></select></div></section>
+          <section class="surface settings-section"><h3 data-i18n="settings.behavior">動作</h3><label class="setting-row"><span><strong data-i18n="settings.remember">最後の設定を記憶</strong><small data-i18n="settings.rememberHelp">次回のスキャンに同じ設定を使用します。</small></span><input id="remember-settings" type="checkbox" checked role="switch"></label><label class="setting-row"><span><strong data-i18n="settings.openReport">完了後に結果を開く</strong><small data-i18n="settings.openReportHelp">問題箇所をすぐに確認します。</small></span><input id="open-result-setting" type="checkbox" checked role="switch"></label></section>
+          <section class="surface settings-section"><h3 data-i18n="settings.privacy">プライバシー</h3><div class="privacy-card"><span aria-hidden="true">⌾</span><div><strong data-i18n="privacy.local">ローカル処理</strong><p data-i18n="settings.privacyBody">FrameProof Studioは127.0.0.1で動作し、動画を外部サービスへ送信しません。レポートはローカルの.frameproof/reportsに保存されます。</p><code id="report-directory"></code></div></div></section>
+          <section class="surface settings-section"><h3 data-i18n="settings.shortcuts">ショートカット</h3><div class="shortcut-grid"><span data-i18n="shortcut.new">新しいスキャン</span><kbd>⌘ / Ctrl + N</kbd><span data-i18n="shortcut.command">コマンドパレット</span><kbd>⌘ / Ctrl + K</kbd><span data-i18n="shortcut.run">スキャン実行</span><kbd>⌘ / Ctrl + Enter</kbd><span data-i18n="shortcut.close">閉じる</span><kbd>Esc</kbd></div></section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="command-dialog" id="command-dialog">
+    <form method="dialog" class="command-shell">
+      <div class="command-input-wrap"><span aria-hidden="true">⌕</span><input id="command-input" type="search" autocomplete="off" placeholder="コマンドを検索"><kbd>Esc</kbd></div>
+      <div class="command-results" id="command-results"></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="environment-dialog"><form method="dialog"><div class="modal-header"><div><h2 data-i18n="environment.title">実行環境</h2><p data-i18n="environment.help">スキャンに必要なツールの状態です。</p></div><button class="icon-button" value="close" aria-label="閉じる">×</button></div><div id="environment-content" class="environment-list"></div><button class="button primary full" value="close" data-i18n="action.close">閉じる</button></form></dialog>
+
+  <dialog class="modal" id="cli-dialog"><form method="dialog"><div class="modal-header"><div><h2 data-i18n="cli.title">CLIコマンド</h2><p data-i18n="cli.help">現在の設定をターミナルでも再現できます。</p></div><button class="icon-button" value="close" aria-label="閉じる">×</button></div><pre id="cli-command"></pre><div class="modal-actions"><button class="button secondary" id="copy-command" type="button" data-i18n="action.copy">コピー</button><button class="button primary" value="close" data-i18n="action.close">閉じる</button></div></form></dialog>
+
+
+  <dialog class="modal repair-dialog" id="repair-dialog"><form method="dialog"><div class="modal-header"><div><h2 id="repair-dialog-title">修復プラン</h2><p id="repair-dialog-help">Claude CodeまたはCodexで安全に修正するためのセッションを作成します。</p></div><button class="icon-button" value="close" aria-label="閉じる">×</button></div><div class="repair-form"><label class="field-row"><span><strong id="repair-agent-label">Agent</strong><small id="repair-agent-help">どちらでも同じFix Packetを使用します。</small></span><select id="repair-agent-select"><option value="codex">Codex</option><option value="claude">Claude Code</option></select></label><label class="field-row stacked"><span><strong id="repair-project-label">プロジェクト</strong><small id="repair-project-help">Gitリポジトリのルート</small></span><input id="repair-project-input" type="text" placeholder="C:\project\video"></label><label class="setting-row"><span><strong id="repair-warning-label">警告も対象にする</strong><small id="repair-warning-help">初回はエラーだけを推奨します。</small></span><input id="repair-warning-input" type="checkbox" role="switch"></label><details class="advanced-details"><summary id="repair-command-summary">レンダーコマンド（任意）</summary><div class="advanced-content"><label class="field-row stacked"><span><strong id="repair-preview-label">部分プレビュー</strong><small>{fromFrame} {toFrame} {output}を使用できます。</small></span><input id="repair-preview-command" type="text" placeholder='npx remotion render ProductLaunch "{output}" --frames={fromFrame}-{toFrame}'></label><label class="field-row stacked"><span><strong id="repair-full-label">全体レンダー</strong><small>{composition} {output}を使用できます。</small></span><input id="repair-full-command" type="text" placeholder='npx remotion render {composition} "{output}"'></label><label class="field-row stacked"><span><strong id="repair-output-label">検証動画の出力先</strong></span><input id="repair-output-video" type="text" placeholder="out/frameproof-current.mp4"></label></div></details><div id="repair-plan-result" class="repair-plan-result" hidden></div></div><div class="modal-actions"><button class="button secondary" value="close" id="repair-cancel">キャンセル</button><button class="button primary" type="button" id="create-repair-plan">修復プランを作成</button></div></form></dialog>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

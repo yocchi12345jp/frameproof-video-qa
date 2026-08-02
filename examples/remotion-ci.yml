@@ -1,0 +1,38 @@
+name: Render and source-aware audit
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  video-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Render video and manifest
+        run: |
+          npx remotion render src/index.ts Main out/video.mp4
+          npm run frameproof:manifest
+      - name: Audit rendered video
+        uses: yocchi12345jp/frameproof-video-qa@v0.8.1
+        with:
+          video: out/video.mp4
+          manifest: .frameproof/manifest.json
+          captions: out/captions.srt
+          audio: true
+          preset: youtube-shorts
+          json-report: artifacts/frameproof.json
+          html-report: artifacts/frameproof.html
+          fix-packets: artifacts/frameproof-fix-packets.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: frameproof-report
+          path: artifacts/

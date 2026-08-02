@@ -1,0 +1,240 @@
+name: FrameProof Video QA
+description: Run source-aware video quality and revision gates for AI-generated and programmatic video.
+author: FrameProof contributors
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  video:
+    description: Path to a rendered video or FFmpeg image-sequence pattern.
+    required: true
+  preset:
+    description: Optional platform preset, such as x-video or x-ad.
+    required: false
+    default: ''
+  config:
+    description: Optional path to frameproof.config.json.
+    required: false
+    default: ''
+  manifest:
+    description: Optional FrameProof Render Manifest for source-aware findings.
+    required: false
+    default: ''
+  captions:
+    description: Optional SRT, WebVTT, or caption JSON sidecar.
+    required: false
+    default: ''
+  audio:
+    description: Measure audio integrity, loudness, and long silence.
+    required: false
+    default: 'false'
+  baseline-report:
+    description: Optional previous FrameProof JSON report for revision classification.
+    required: false
+    default: ''
+  acceptances:
+    description: Optional reviewed-finding acceptance file.
+    required: false
+    default: ''
+  aspect:
+    description: Optional exact expected aspect ratio, such as 16:9 or 9:16.
+    required: false
+    default: ''
+  max-frozen-seconds:
+    description: Maximum permitted visually unchanged duration.
+    required: false
+    default: ''
+  maximum-analysis-frames:
+    description: Maximum number of grayscale frames FrameProof may decode before failing safely.
+    required: false
+    default: '108000'
+  analysis-timeout-seconds:
+    description: Maximum visual-frame analysis duration in seconds.
+    required: false
+    default: '1200'
+  fail-on-warning:
+    description: Fail the step when one or more current warnings or warning regressions are reported.
+    required: false
+    default: 'false'
+  json-report:
+    description: JSON report output path.
+    required: false
+    default: artifacts/frameproof.json
+  html-report:
+    description: HTML report output path.
+    required: false
+    default: artifacts/frameproof.html
+  fix-packets:
+    description: Agent-readable repair packet output path.
+    required: false
+    default: artifacts/frameproof-fix-packets.json
+  revision-json:
+    description: Revision comparison JSON path. Used when baseline-report is set.
+    required: false
+    default: artifacts/frameproof-revision.json
+  revision-html:
+    description: Revision comparison HTML path. Used when baseline-report is set.
+    required: false
+    default: artifacts/frameproof-revision.html
+  markdown-report:
+    description: GitHub-ready Markdown summary path.
+    required: false
+    default: artifacts/frameproof-pr.md
+  sarif-report:
+    description: SARIF 2.1.0 output path for GitHub code scanning.
+    required: false
+    default: artifacts/frameproof.sarif
+  junit-report:
+    description: JUnit XML output path.
+    required: false
+    default: artifacts/frameproof.xml
+  repair-session:
+    description: Optional repair-session JSON output. A plan is created when the quality gate fails; no Agent is executed.
+    required: false
+    default: ''
+  repair-agent:
+    description: Agent named in the generated repair plan (codex or claude).
+    required: false
+    default: codex
+  repair-project:
+    description: Project root used by the repair plan. Defaults to the GitHub workspace.
+    required: false
+    default: ''
+  repair-render-command:
+    description: Optional partial preview render command template.
+    required: false
+    default: ''
+  repair-full-render-command:
+    description: Optional full render command template.
+    required: false
+    default: ''
+  repair-output-video:
+    description: Optional rendered-video output path for later verification.
+    required: false
+    default: ''
+
+outputs:
+  json-report:
+    description: Path to the generated JSON report.
+    value: ${{ steps.scan.outputs.json-report }}
+  html-report:
+    description: Path to the generated HTML report.
+    value: ${{ steps.scan.outputs.html-report }}
+  fix-packets:
+    description: Path to the generated Fix Packet JSON.
+    value: ${{ steps.scan.outputs.fix-packets }}
+  revision-json:
+    description: Path to the revision JSON.
+    value: ${{ steps.scan.outputs.revision-json }}
+  revision-html:
+    description: Path to the revision HTML.
+    value: ${{ steps.scan.outputs.revision-html }}
+  markdown-report:
+    description: Path to the Markdown PR summary.
+    value: ${{ steps.scan.outputs.markdown-report }}
+  sarif-report:
+    description: Path to the SARIF file.
+    value: ${{ steps.scan.outputs.sarif-report }}
+  junit-report:
+    description: Path to the JUnit XML file.
+    value: ${{ steps.scan.outputs.junit-report }}
+  exit-code:
+    description: FrameProof process exit code.
+    value: ${{ steps.scan.outputs.exit-code }}
+  repair-session:
+    description: Path to the generated guarded repair session, when requested and the gate failed.
+    value: ${{ steps.scan.outputs.repair-session }}
+
+runs:
+  using: composite
+  steps:
+    - id: scan
+      shell: bash
+      env:
+        INPUT_VIDEO: ${{ inputs.video }}
+        INPUT_PRESET: ${{ inputs.preset }}
+        INPUT_CONFIG: ${{ inputs.config }}
+        INPUT_MANIFEST: ${{ inputs.manifest }}
+        INPUT_CAPTIONS: ${{ inputs.captions }}
+        INPUT_AUDIO: ${{ inputs.audio }}
+        INPUT_BASELINE: ${{ inputs.baseline-report }}
+        INPUT_ACCEPTANCES: ${{ inputs.acceptances }}
+        INPUT_ASPECT: ${{ inputs.aspect }}
+        INPUT_MAX_FROZEN_SECONDS: ${{ inputs.max-frozen-seconds }}
+        INPUT_MAXIMUM_ANALYSIS_FRAMES: ${{ inputs.maximum-analysis-frames }}
+        INPUT_ANALYSIS_TIMEOUT_SECONDS: ${{ inputs.analysis-timeout-seconds }}
+        INPUT_FAIL_ON_WARNING: ${{ inputs.fail-on-warning }}
+        INPUT_JSON_REPORT: ${{ inputs.json-report }}
+        INPUT_HTML_REPORT: ${{ inputs.html-report }}
+        INPUT_FIX_PACKETS: ${{ inputs.fix-packets }}
+        INPUT_REVISION_JSON: ${{ inputs.revision-json }}
+        INPUT_REVISION_HTML: ${{ inputs.revision-html }}
+        INPUT_MARKDOWN_REPORT: ${{ inputs.markdown-report }}
+        INPUT_SARIF_REPORT: ${{ inputs.sarif-report }}
+        INPUT_JUNIT_REPORT: ${{ inputs.junit-report }}
+        INPUT_REPAIR_SESSION: ${{ inputs.repair-session }}
+        INPUT_REPAIR_AGENT: ${{ inputs.repair-agent }}
+        INPUT_REPAIR_PROJECT: ${{ inputs.repair-project }}
+        INPUT_REPAIR_RENDER_COMMAND: ${{ inputs.repair-render-command }}
+        INPUT_REPAIR_FULL_RENDER_COMMAND: ${{ inputs.repair-full-render-command }}
+        INPUT_REPAIR_OUTPUT_VIDEO: ${{ inputs.repair-output-video }}
+      run: |
+        args=(scan "$INPUT_VIDEO" --json "$INPUT_JSON_REPORT" --html "$INPUT_HTML_REPORT" --fix-packets "$INPUT_FIX_PACKETS" --sarif "$INPUT_SARIF_REPORT" --junit "$INPUT_JUNIT_REPORT")
+        if [[ -n "$INPUT_PRESET" ]]; then args+=(--preset "$INPUT_PRESET"); fi
+        if [[ -n "$INPUT_CONFIG" ]]; then args+=(--config "$INPUT_CONFIG"); fi
+        if [[ -n "$INPUT_MANIFEST" ]]; then args+=(--manifest "$INPUT_MANIFEST"); fi
+        if [[ -n "$INPUT_CAPTIONS" ]]; then args+=(--captions "$INPUT_CAPTIONS"); fi
+        if [[ "$INPUT_AUDIO" == "true" ]]; then args+=(--audio --check-silence); fi
+        if [[ -n "$INPUT_BASELINE" ]]; then
+          args+=(--baseline "$INPUT_BASELINE" --revision-json "$INPUT_REVISION_JSON" --revision-html "$INPUT_REVISION_HTML" --markdown "$INPUT_MARKDOWN_REPORT")
+          if [[ -n "$INPUT_ACCEPTANCES" ]]; then args+=(--acceptances "$INPUT_ACCEPTANCES"); fi
+        fi
+        if [[ -n "$INPUT_ASPECT" ]]; then args+=(--aspect "$INPUT_ASPECT"); fi
+        if [[ -n "$INPUT_MAX_FROZEN_SECONDS" ]]; then args+=(--max-frozen-seconds "$INPUT_MAX_FROZEN_SECONDS"); fi
+        if [[ -n "$INPUT_MAXIMUM_ANALYSIS_FRAMES" ]]; then args+=(--maximum-analysis-frames "$INPUT_MAXIMUM_ANALYSIS_FRAMES"); fi
+        if [[ -n "$INPUT_ANALYSIS_TIMEOUT_SECONDS" ]]; then args+=(--analysis-timeout-seconds "$INPUT_ANALYSIS_TIMEOUT_SECONDS"); fi
+        if [[ "$INPUT_FAIL_ON_WARNING" == "true" ]]; then args+=(--fail-on-warning); fi
+
+        set +e
+        node "$GITHUB_ACTION_PATH/src/cli.js" "${args[@]}"
+        status=$?
+        set -e
+
+        echo "json-report=$INPUT_JSON_REPORT" >> "$GITHUB_OUTPUT"
+        echo "html-report=$INPUT_HTML_REPORT" >> "$GITHUB_OUTPUT"
+        echo "fix-packets=$INPUT_FIX_PACKETS" >> "$GITHUB_OUTPUT"
+        echo "revision-json=$INPUT_REVISION_JSON" >> "$GITHUB_OUTPUT"
+        echo "revision-html=$INPUT_REVISION_HTML" >> "$GITHUB_OUTPUT"
+        echo "markdown-report=$INPUT_MARKDOWN_REPORT" >> "$GITHUB_OUTPUT"
+        echo "sarif-report=$INPUT_SARIF_REPORT" >> "$GITHUB_OUTPUT"
+        echo "junit-report=$INPUT_JUNIT_REPORT" >> "$GITHUB_OUTPUT"
+        echo "exit-code=$status" >> "$GITHUB_OUTPUT"
+        echo "repair-session=" >> "$GITHUB_OUTPUT"
+
+        if [[ "$status" -ne 0 && -n "$INPUT_REPAIR_SESSION" && -f "$INPUT_JSON_REPORT" ]]; then
+          repair_args=(repair create "$INPUT_JSON_REPORT" --agent "$INPUT_REPAIR_AGENT" --project "${INPUT_REPAIR_PROJECT:-$GITHUB_WORKSPACE}" --output "$INPUT_REPAIR_SESSION")
+          if [[ -n "$INPUT_REPAIR_RENDER_COMMAND" ]]; then repair_args+=(--render-command "$INPUT_REPAIR_RENDER_COMMAND"); fi
+          if [[ -n "$INPUT_REPAIR_FULL_RENDER_COMMAND" ]]; then repair_args+=(--full-render-command "$INPUT_REPAIR_FULL_RENDER_COMMAND"); fi
+          if [[ -n "$INPUT_REPAIR_OUTPUT_VIDEO" ]]; then repair_args+=(--output-video "$INPUT_REPAIR_OUTPUT_VIDEO"); fi
+          node "$GITHUB_ACTION_PATH/src/cli.js" "${repair_args[@]}"
+          echo "repair-session=$INPUT_REPAIR_SESSION" >> "$GITHUB_OUTPUT"
+        fi
+
+        if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+          if [[ -n "$INPUT_BASELINE" && -f "$INPUT_MARKDOWN_REPORT" ]]; then
+            cat "$INPUT_MARKDOWN_REPORT" >> "$GITHUB_STEP_SUMMARY"
+          else
+            {
+              echo "## FrameProof Video QA"
+              echo
+              echo "- Video: \`$INPUT_VIDEO\`"
+              echo "- Preset: \`${INPUT_PRESET:-none}\`"
+              echo "- JSON report: \`$INPUT_JSON_REPORT\`"
+              echo "- HTML report: \`$INPUT_HTML_REPORT\`"
+              echo "- Exit code: \`$status\`"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+        fi
+
+        exit "$status"

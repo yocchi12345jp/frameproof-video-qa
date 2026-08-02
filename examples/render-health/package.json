@@ -1,0 +1,6 @@
+{
+  "name": "frameproof-render-health-example",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {"render": "bash render.sh"}
+}

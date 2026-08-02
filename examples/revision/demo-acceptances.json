@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "acceptances": [
+    {
+      "fingerprint": "187b75825e1a9c3a3ab0",
+      "reason": "Approved CTA-caption overlap for this end card",
+      "owner": "video-team",
+      "match": {
+        "code": "CAPTION_REGION_COLLISION",
+        "sourceFile": "src/scenes/CtaScene.tsx",
+        "captionId": "2",
+        "regionId": "cta-primary"
+      }
+    }
+  ]
+}

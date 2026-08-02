@@ -1,0 +1,47 @@
+name: Publish npm package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Verify release tag matches package version
+        shell: bash
+        run: |
+          package_version="$(node -p "require('./package.json').version")"
+          release_version="${GITHUB_REF_NAME#v}"
+          test "$release_version" = "$package_version" || { echo "Release tag $GITHUB_REF_NAME does not match package version $package_version"; exit 1; }
+      - run: npm ci
+      - run: npm run check
+      - run: npm run check:package
+      - name: Check whether this version is already published
+        id: published
+        shell: bash
+        run: |
+          package_name="$(node -p "require('./package.json').name")"
+          package_version="$(node -p "require('./package.json').version")"
+          if npm view "${package_name}@${package_version}" version --registry=https://registry.npmjs.org >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish beta with npm Trusted Publishing
+        if: steps.published.outputs.exists != 'true'
+        run: npm publish --access public --tag beta --registry=https://registry.npmjs.org
+      - name: Version already published
+        if: steps.published.outputs.exists == 'true'
+        run: echo "Version already exists on npm; skipping idempotently."

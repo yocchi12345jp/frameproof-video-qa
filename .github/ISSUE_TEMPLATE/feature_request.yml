@@ -1,0 +1,23 @@
+name: Feature request
+description: Propose a new check, integration, or report format
+title: "[Feature]: "
+labels: [enhancement, needs-triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Production problem
+      description: What video defect or maintenance burden should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: determinism
+    attributes:
+      label: Determinism and false positives
+      description: How can the check remain explainable and stable?

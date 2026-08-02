@@ -1,0 +1,13 @@
+{
+  "preset": "x-video",
+  "fps": 30,
+  "expectedAspect": "16:9",
+  "aspectTolerance": 0.002,
+  "maxFrozenSeconds": 2.5,
+  "frozenDifferenceThreshold": 0.003,
+  "safeMarginRatio": 0.05,
+  "maxEdgeActivityRatio": 0.08,
+  "blankStdDevThreshold": 3,
+  "blackLuminanceThreshold": 4,
+  "whiteLuminanceThreshold": 251
+}

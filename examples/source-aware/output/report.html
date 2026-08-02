@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FrameProof report</title><style>
+:root{color-scheme:light dark;--bg:#f6f8fa;--surface:#fff;--text:#1f2328;--muted:#59636e;--border:#d0d7de;--accent:#0969da;--error:#cf222e;--error-bg:#ffebe9;--warning:#9a6700;--warning-bg:#fff8c5;--success:#1a7f37}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1117;--surface:#161b22;--text:#f0f6fc;--muted:#9198a1;--border:#30363d;--accent:#4493f8;--error:#ff7b72;--error-bg:#3d171c;--warning:#d29922;--warning-bg:#352a00;--success:#3fb950}}
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:var(--bg);color:var(--text)}main{max-width:1180px;margin:40px auto;padding:0 20px}header,.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:18px}h1{margin:0 0 8px;font-size:28px}h2{font-size:18px;margin-top:0}h3{font-size:15px;margin:12px 0}.muted{color:var(--muted)}.summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}.summary.compact{grid-template-columns:repeat(4,minmax(0,1fr))}.metric{background:color-mix(in srgb,var(--surface) 80%,var(--bg));border:1px solid var(--border);border-radius:9px;padding:14px}.metric strong{display:block;font-size:21px;margin-top:3px}.badge{display:inline-block;border-radius:999px;padding:3px 8px;font-weight:700;font-size:12px}.badge.error{background:var(--error-bg);color:var(--error)}.badge.warning{background:var(--warning-bg);color:var(--warning)}.pass{color:var(--success)}.fail{color:var(--error)}code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.findings{display:flex;flex-direction:column;gap:12px}.finding{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--warning);border-radius:10px;padding:16px}.finding.error{border-left-color:var(--error)}.finding-head{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px}.finding h3{font-weight:600}.source{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.detail-grid>div{min-width:0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:11px;max-height:360px;overflow:auto}summary{cursor:pointer;color:var(--accent);font-weight:600}button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:7px;padding:7px 10px;cursor:pointer}button:hover{border-color:var(--accent)}
+@media(max-width:760px){.summary,.summary.compact{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-grid{grid-template-columns:1fr}}
+</style></head>
+<body><main><header><h1>FrameProof Video QA</h1><div class="fail"><strong>FAILED</strong></div>
+<div>examples/source-aware/output/demo.mp4</div><div class="muted">Composition: ProductLaunch · 2026-08-02T12:59:27.619Z</div><div class="summary">
+<div class="metric"><span>Frames</span><strong>20</strong></div>
+<div class="metric"><span>Size</span><strong>320×180</strong></div>
+<div class="metric"><span>FPS</span><strong>10</strong></div>
+<div class="metric"><span>Errors</span><strong>6</strong></div>
+<div class="metric"><span>Warnings</span><strong>4</strong></div>
+</div></header>
+<section class="panel"><h2>Audio integrity</h2><div class="summary compact">
+<div class="metric"><span>Audio stream</span><strong>Yes</strong></div>
+<div class="metric"><span>Channels</span><strong>1</strong></div>
+<div class="metric"><span>Integrated</span><strong>-22.5 LUFS</strong></div>
+<div class="metric"><span>True peak</span><strong>-12.1 dBTP</strong></div>
+</div></section>
+<section class="panel"><h2>Findings</h2><div class="findings"><article class="finding warning">
+<div class="finding-head"><span class="badge warning">warning</span><code>CAPTION_TOO_SHORT</code><span>0.00–0.40s</span></div>
+<h3>Caption 1 is displayed for only 400 ms.</h3>
+
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;captionId&quot;: &quot;1&quot;,
+  &quot;startMs&quot;: 0,
+  &quot;endMs&quot;: 400,
+  &quot;text&quot;: &quot;これは短すぎる字幕です&quot;,
+  &quot;actualDurationMs&quot;: 400,
+  &quot;minimumDurationMs&quot;: 650
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-0">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;CAPTION_TOO_SHORT:0:3&quot;,
+  &quot;ruleId&quot;: &quot;CAPTION_TOO_SHORT&quot;,
+  &quot;severity&quot;: &quot;warning&quot;,
+  &quot;message&quot;: &quot;Caption 1 is displayed for only 400 ms.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 0,
+    &quot;to&quot;: 3
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 0,
+    &quot;to&quot;: 0.3
+  },
+  &quot;expected&quot;: {
+    &quot;minimumDurationMs&quot;: 650
+  },
+  &quot;actual&quot;: {
+    &quot;actualDurationMs&quot;: 400
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Increase caption display duration&quot;,
+    &quot;Merge it with an adjacent caption when appropriate&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 4 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-0">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding warning">
+<div class="finding-head"><span class="badge warning">warning</span><code>CAPTION_TOO_FAST</code><span>0.00–0.40s</span></div>
+<h3>Caption 1 requires 27.5 characters per second.</h3>
+
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;captionId&quot;: &quot;1&quot;,
+  &quot;startMs&quot;: 0,
+  &quot;endMs&quot;: 400,
+  &quot;text&quot;: &quot;これは短すぎる字幕です&quot;,
+  &quot;actualCharactersPerSecond&quot;: 27.5,
+  &quot;maximumCharactersPerSecond&quot;: 20
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-1">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;CAPTION_TOO_FAST:0:3&quot;,
+  &quot;ruleId&quot;: &quot;CAPTION_TOO_FAST&quot;,
+  &quot;severity&quot;: &quot;warning&quot;,
+  &quot;message&quot;: &quot;Caption 1 requires 27.5 characters per second.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 0,
+    &quot;to&quot;: 3
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 0,
+    &quot;to&quot;: 0.3
+  },
+  &quot;expected&quot;: {
+    &quot;maximumCharactersPerSecond&quot;: 20
+  },
+  &quot;actual&quot;: {
+    &quot;actualCharactersPerSecond&quot;: 27.5
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Shorten the caption text&quot;,
+    &quot;Increase its display duration or split it at a semantic boundary&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 4 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-1">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding error">
+<div class="finding-head"><span class="badge error">error</span><code>CAPTION_OVERLAP</code><span>0.00–0.40s</span></div>
+<h3>Captions 1 and 2 overlap by 50 ms.</h3>
+
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;captionId&quot;: &quot;1&quot;,
+  &quot;startMs&quot;: 0,
+  &quot;endMs&quot;: 400,
+  &quot;text&quot;: &quot;これは短すぎる字幕です&quot;,
+  &quot;nextCaptionId&quot;: &quot;2&quot;,
+  &quot;overlapMs&quot;: 50
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-2">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;CAPTION_OVERLAP:0:3&quot;,
+  &quot;ruleId&quot;: &quot;CAPTION_OVERLAP&quot;,
+  &quot;severity&quot;: &quot;error&quot;,
+  &quot;message&quot;: &quot;Captions 1 and 2 overlap by 50 ms.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 0,
+    &quot;to&quot;: 3
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 0,
+    &quot;to&quot;: 0.3
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Correct adjacent caption timestamps&quot;,
+    &quot;Ensure only one caption cue is active at a time&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 4 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-2">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding warning">
+<div class="finding-head"><span class="badge warning">warning</span><code>CAPTION_LINE_TOO_LONG</code><span>0.30–1.80s</span></div>
+<h3>Caption 2 has a 23-character line.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;captionId&quot;: &quot;2&quot;,
+  &quot;startMs&quot;: 350,
+  &quot;endMs&quot;: 1800,
+  &quot;text&quot;: &quot;CTAと重なる可能性のある長い字幕テキストです&quot;,
+  &quot;actualLineLength&quot;: 23,
+  &quot;maximumLineLength&quot;: 16,
+  &quot;language&quot;: &quot;ja&quot;
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-3">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;CAPTION_LINE_TOO_LONG:3:17&quot;,
+  &quot;ruleId&quot;: &quot;CAPTION_LINE_TOO_LONG&quot;,
+  &quot;severity&quot;: &quot;warning&quot;,
+  &quot;message&quot;: &quot;Caption 2 has a 23-character line.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 3,
+    &quot;to&quot;: 17
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 0.3,
+    &quot;to&quot;: 1.7
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;expected&quot;: {
+    &quot;maximumLineLength&quot;: 16
+  },
+  &quot;actual&quot;: {
+    &quot;actualLineLength&quot;: 23
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Insert a semantic line break&quot;,
+    &quot;Shorten the caption for the target language&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 18 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-3">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding error">
+<div class="finding-head"><span class="badge error">error</span><code>CAPTION_REGION_COLLISION</code><span>0.30–1.80s</span></div>
+<h3>Caption 2 overlaps declared region cta-primary.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;captionId&quot;: &quot;2&quot;,
+  &quot;startMs&quot;: 350,
+  &quot;endMs&quot;: 1800,
+  &quot;text&quot;: &quot;CTAと重なる可能性のある長い字幕テキストです&quot;,
+  &quot;regionId&quot;: &quot;cta-primary&quot;,
+  &quot;captionBox&quot;: {
+    &quot;x&quot;: 0.08,
+    &quot;y&quot;: 0.72,
+    &quot;width&quot;: 0.84,
+    &quot;height&quot;: 0.2
+  },
+  &quot;regionBox&quot;: {
+    &quot;x&quot;: 0.1,
+    &quot;y&quot;: 0.78,
+    &quot;width&quot;: 0.8,
+    &quot;height&quot;: 0.16
+  }
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-4">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;CAPTION_REGION_COLLISION:3:17&quot;,
+  &quot;ruleId&quot;: &quot;CAPTION_REGION_COLLISION&quot;,
+  &quot;severity&quot;: &quot;error&quot;,
+  &quot;message&quot;: &quot;Caption 2 overlaps declared region cta-primary.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 3,
+    &quot;to&quot;: 17
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 0.3,
+    &quot;to&quot;: 1.7
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;suggestedActions&quot;: [
+    &quot;Move the caption or declared UI region&quot;,
+    &quot;Use the platform-safe caption layout&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 18 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-4">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding warning">
+<div class="finding-head"><span class="badge warning">warning</span><code>UNEXPECTED_SILENCE</code><span>1.00–1.90s</span></div>
+<h3>Audio is silent for 0.81 seconds from 1.00s.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;actual&quot;: {
+    &quot;durationSeconds&quot;: 0.809437,
+    &quot;startSeconds&quot;: 1.003833,
+    &quot;endSeconds&quot;: 1.813271
+  },
+  &quot;maximumSilenceSeconds&quot;: 0.5
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-5">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;UNEXPECTED_SILENCE:10:18&quot;,
+  &quot;ruleId&quot;: &quot;UNEXPECTED_SILENCE&quot;,
+  &quot;severity&quot;: &quot;warning&quot;,
+  &quot;message&quot;: &quot;Audio is silent for 0.81 seconds from 1.00s.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 10,
+    &quot;to&quot;: 18
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 1,
+    &quot;to&quot;: 1.8
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;expected&quot;: {
+    &quot;maximumSilenceSeconds&quot;: 0.5
+  },
+  &quot;actual&quot;: {
+    &quot;durationSeconds&quot;: 0.809437,
+    &quot;startSeconds&quot;: 1.003833,
+    &quot;endSeconds&quot;: 1.813271
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Inspect the mapped dialogue/audio Sequence&quot;,
+    &quot;Check gain, mute state, and source duration&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 19 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-5">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding error">
+<div class="finding-head"><span class="badge error">error</span><code>EXPECTED_MOTION_MISSING</code><span>1.00–2.00s</span></div>
+<h3>Expected motion cta-motion averaged 0.0000, below 0.02.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;assertionId&quot;: &quot;cta-motion&quot;,
+  &quot;kind&quot;: &quot;motion&quot;,
+  &quot;expected&quot;: {
+    &quot;minimumChange&quot;: 0.02
+  },
+  &quot;actual&quot;: {
+    &quot;averageChange&quot;: 0,
+    &quot;maximumChange&quot;: 0
+  },
+  &quot;minimumChange&quot;: 0.02
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-6">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;EXPECTED_MOTION_MISSING:10:19&quot;,
+  &quot;ruleId&quot;: &quot;EXPECTED_MOTION_MISSING&quot;,
+  &quot;severity&quot;: &quot;error&quot;,
+  &quot;message&quot;: &quot;Expected motion cta-motion averaged 0.0000, below 0.02.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 10,
+    &quot;to&quot;: 19
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 1,
+    &quot;to&quot;: 1.9
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;expected&quot;: {
+    &quot;minimumChange&quot;: 0.02
+  },
+  &quot;actual&quot;: {
+    &quot;averageChange&quot;: 0,
+    &quot;maximumChange&quot;: 0
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Inspect the mapped component animation&quot;,
+    &quot;Verify frame-driven animation values and rerender the affected range&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 20 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-6">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding error">
+<div class="finding-head"><span class="badge error">error</span><code>TEXT_TOO_SMALL</code><span>1.00–2.00s</span></div>
+<h3>Declared text cta-copy is 22px, below 32px.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;assertionId&quot;: &quot;cta-copy&quot;,
+  &quot;kind&quot;: &quot;text&quot;,
+  &quot;expected&quot;: {
+    &quot;minimumPx&quot;: 32,
+    &quot;maximumLines&quot;: 2
+  },
+  &quot;actual&quot;: {
+    &quot;fontSizePx&quot;: 22
+  },
+  &quot;minimumPx&quot;: 32
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-7">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;TEXT_TOO_SMALL:10:19&quot;,
+  &quot;ruleId&quot;: &quot;TEXT_TOO_SMALL&quot;,
+  &quot;severity&quot;: &quot;error&quot;,
+  &quot;message&quot;: &quot;Declared text cta-copy is 22px, below 32px.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 10,
+    &quot;to&quot;: 19
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 1,
+    &quot;to&quot;: 1.9
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;expected&quot;: {
+    &quot;minimumPx&quot;: 32,
+    &quot;maximumLines&quot;: 2
+  },
+  &quot;actual&quot;: {
+    &quot;fontSizePx&quot;: 22
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Increase the base font size&quot;,
+    &quot;Reduce line length or use a responsive layout variant&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 20 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-7">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding error">
+<div class="finding-head"><span class="badge error">error</span><code>TEXT_TOO_MANY_LINES</code><span>1.00–2.00s</span></div>
+<h3>Declared text cta-copy uses 3 lines, above 2.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;assertionId&quot;: &quot;cta-copy&quot;,
+  &quot;kind&quot;: &quot;text&quot;,
+  &quot;expected&quot;: {
+    &quot;minimumPx&quot;: 32,
+    &quot;maximumLines&quot;: 2
+  },
+  &quot;actual&quot;: {
+    &quot;lineCount&quot;: 3
+  },
+  &quot;maximumLines&quot;: 2
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-8">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;TEXT_TOO_MANY_LINES:10:19&quot;,
+  &quot;ruleId&quot;: &quot;TEXT_TOO_MANY_LINES&quot;,
+  &quot;severity&quot;: &quot;error&quot;,
+  &quot;message&quot;: &quot;Declared text cta-copy uses 3 lines, above 2.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 10,
+    &quot;to&quot;: 19
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 1,
+    &quot;to&quot;: 1.9
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;expected&quot;: {
+    &quot;minimumPx&quot;: 32,
+    &quot;maximumLines&quot;: 2
+  },
+  &quot;actual&quot;: {
+    &quot;lineCount&quot;: 3
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Shorten the copy&quot;,
+    &quot;Increase the text container size or reduce line length&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 20 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-8">Copy Fix Packet</button></div></div></details>
+</article>
+<article class="finding error">
+<div class="finding-head"><span class="badge error">error</span><code>SAFE_AREA_VIOLATION</code><span>1.00–2.00s</span></div>
+<h3>Region cta-primary violates the declared safe area.</h3>
+<div class="source"><strong>Source</strong><code>src/scenes/CtaScene.tsx:42</code></div>
+<details><summary>Details and repair packet</summary><div class="detail-grid"><div><h4>Details</h4><pre>{
+  &quot;assertionId&quot;: &quot;cta-safe&quot;,
+  &quot;kind&quot;: &quot;safe-area&quot;,
+  &quot;expected&quot;: {
+    &quot;platform&quot;: &quot;x-video&quot;,
+    &quot;marginRatio&quot;: 0.05
+  },
+  &quot;actual&quot;: {
+    &quot;box&quot;: {
+      &quot;x&quot;: 0.1,
+      &quot;y&quot;: 0.78,
+      &quot;width&quot;: 0.8,
+      &quot;height&quot;: 0.16
+    },
+    &quot;overlappingZones&quot;: [
+      &quot;player-controls&quot;
+    ]
+  },
+  &quot;marginRatio&quot;: 0.05,
+  &quot;platform&quot;: &quot;x-video&quot;
+}</pre></div><div><h4>Fix Packet</h4><pre id="packet-9">{
+  &quot;schemaVersion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;SAFE_AREA_VIOLATION:10:19&quot;,
+  &quot;ruleId&quot;: &quot;SAFE_AREA_VIOLATION&quot;,
+  &quot;severity&quot;: &quot;error&quot;,
+  &quot;message&quot;: &quot;Region cta-primary violates the declared safe area.&quot;,
+  &quot;frames&quot;: {
+    &quot;from&quot;: 10,
+    &quot;to&quot;: 19
+  },
+  &quot;timestampSeconds&quot;: {
+    &quot;from&quot;: 1,
+    &quot;to&quot;: 1.9
+  },
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;contexts&quot;: [
+    {
+      &quot;id&quot;: &quot;cta-primary&quot;,
+      &quot;role&quot;: &quot;cta&quot;,
+      &quot;source&quot;: {
+        &quot;composition&quot;: &quot;ProductLaunch&quot;,
+        &quot;sequence&quot;: &quot;CTA&quot;,
+        &quot;component&quot;: &quot;CtaButton&quot;,
+        &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+        &quot;line&quot;: 42
+      },
+      &quot;from&quot;: 10,
+      &quot;to&quot;: 19
+    }
+  ],
+  &quot;expected&quot;: {
+    &quot;platform&quot;: &quot;x-video&quot;,
+    &quot;marginRatio&quot;: 0.05
+  },
+  &quot;actual&quot;: {
+    &quot;box&quot;: {
+      &quot;x&quot;: 0.1,
+      &quot;y&quot;: 0.78,
+      &quot;width&quot;: 0.8,
+      &quot;height&quot;: 0.16
+    },
+    &quot;overlappingZones&quot;: [
+      &quot;player-controls&quot;
+    ]
+  },
+  &quot;suggestedActions&quot;: [
+    &quot;Move the mapped region away from platform UI&quot;,
+    &quot;Use a platform-specific layout variant&quot;
+  ],
+  &quot;reproduce&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --max-frames 20 --json .frameproof/reproduce.json&quot;,
+  &quot;verify&quot;: &quot;frameproof scan \&quot;examples/source-aware/output/demo.mp4\&quot; --manifest \&quot;./examples/source-aware/manifest.json\&quot; --captions \&quot;./examples/source-aware/captions.srt\&quot; --fail-on-warning&quot;
+}</pre><button type="button" data-copy="packet-9">Copy Fix Packet</button></div></div></details>
+</article></div></section>
+</main><script>document.addEventListener('click',async(e)=>{const id=e.target?.dataset?.copy;if(!id)return;await navigator.clipboard.writeText(document.getElementById(id).textContent);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy Fix Packet',1200)});</script></body></html>

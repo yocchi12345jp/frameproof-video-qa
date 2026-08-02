@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FrameProof report</title><style>
+body{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:#f6f7f9;color:#17191c}
+main{max-width:1100px;margin:40px auto;padding:0 20px}header,.panel{background:white;border:1px solid #e1e4e8;border-radius:12px;padding:22px;margin-bottom:18px}
+h1{margin:0 0 8px;font-size:28px}h2{font-size:18px;margin-top:0}.summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
+.metric{background:#f7f8fa;border-radius:9px;padding:14px}.metric strong{display:block;font-size:22px}table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid #eceef1;vertical-align:top}.badge{display:inline-block;border-radius:999px;padding:3px 8px;font-weight:700;font-size:12px}
+.error{background:#ffe5e5;color:#9b1c1c}.warning{background:#fff2cc;color:#765500}.pass{color:#146c2e}.fail{color:#9b1c1c}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+@media(max-width:760px){.summary{grid-template-columns:repeat(2,minmax(0,1fr))}table{display:block;overflow:auto}}</style></head>
+<body><main><header><h1>FrameProof Video QA</h1><div class="fail"><strong>FAILED</strong></div>
+<div>examples/demo/failing.mp4</div><div class="summary">
+<div class="metric"><span>Frames</span><strong>20</strong></div>
+<div class="metric"><span>Size</span><strong>320×180</strong></div>
+<div class="metric"><span>FPS</span><strong>10</strong></div>
+<div class="metric"><span>Errors</span><strong>1</strong></div>
+<div class="metric"><span>Warnings</span><strong>2</strong></div></div></header>
+<section class="panel"><h2>Findings</h2><table><thead><tr><th>Severity</th><th>Code</th><th>Message</th><th>Frames</th></tr></thead><tbody><tr>
+<td><span class="badge error">error</span></td>
+<td><code>BLANK_FRAME</code></td>
+<td>10 blank or near-blank frame(s) detected.</td>
+<td>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</td>
+</tr>
+<tr>
+<td><span class="badge warning">warning</span></td>
+<td><code>EDGE_ACTIVITY</code></td>
+<td>10 frame(s) contain dense visual activity inside the outer 5% margin.</td>
+<td>10, 11, 12, 13, 14, 15, 16, 17, 18, 19</td>
+</tr>
+<tr>
+<td><span class="badge warning">warning</span></td>
+<td><code>FROZEN_RUN</code></td>
+<td>Frames 0-9 remain visually unchanged for 1.00 seconds.</td>
+<td>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</td>
+</tr></tbody></table></section>
+<section class="panel"><h2>Metadata</h2><pre>{
+  &quot;width&quot;: 320,
+  &quot;height&quot;: 180,
+  &quot;fps&quot;: 10,
+  &quot;durationSeconds&quot;: 2,
+  &quot;frameCount&quot;: 20,
+  &quot;codec&quot;: &quot;h264&quot;,
+  &quot;pixelFormat&quot;: &quot;yuv420p&quot;,
+  &quot;profile&quot;: &quot;High&quot;,
+  &quot;videoBitRate&quot;: 76068,
+  &quot;container&quot;: &quot;mov,mp4,m4a,3gp,3g2,mj2&quot;,
+  &quot;fileSizeBytes&quot;: 20112
+}</pre></section>
+<section class="panel"><h2>Configuration</h2><pre>{
+  &quot;preset&quot;: &quot;x-ad&quot;,
+  &quot;fps&quot;: 10,
+  &quot;expectedAspect&quot;: &quot;16:9&quot;,
+  &quot;acceptedAspects&quot;: [
+    &quot;1:1&quot;,
+    &quot;1.91:1&quot;,
+    &quot;16:9&quot;,
+    &quot;9:16&quot;,
+    &quot;4:5&quot;,
+    &quot;2:3&quot;
+  ],
+  &quot;aspectTolerance&quot;: 0.002,
+  &quot;maxFrozenSeconds&quot;: 0.5,
+  &quot;frozenDifferenceThreshold&quot;: 0.003,
+  &quot;safeMarginRatio&quot;: 0.05,
+  &quot;maxEdgeActivityRatio&quot;: 0.08,
+  &quot;blankStdDevThreshold&quot;: 3,
+  &quot;blackLuminanceThreshold&quot;: 4,
+  &quot;whiteLuminanceThreshold&quot;: 251,
+  &quot;allowedContainers&quot;: [
+    &quot;mov&quot;,
+    &quot;mp4&quot;,
+    &quot;m4a&quot;,
+    &quot;3gp&quot;,
+    &quot;3g2&quot;,
+    &quot;mj2&quot;
+  ],
+  &quot;allowedVideoCodecs&quot;: [
+    &quot;h264&quot;
+  ],
+  &quot;allowedPixelFormats&quot;: [
+    &quot;yuv420p&quot;
+  ],
+  &quot;allowedAudioCodecs&quot;: [
+    &quot;aac&quot;
+  ],
+  &quot;maximumFps&quot;: 60,
+  &quot;maximumDurationSeconds&quot;: 140,
+  &quot;maximumFileSizeBytes&quot;: 1000000000,
+  &quot;recommendedMaximumFileSizeBytes&quot;: 30000000,
+  &quot;platformRuleSeverity&quot;: &quot;error&quot;
+}</pre></section>
+</main></body></html>

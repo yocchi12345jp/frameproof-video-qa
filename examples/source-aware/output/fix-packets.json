@@ -1,0 +1,433 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-02T12:59:27.619Z",
+  "input": "examples/source-aware/output/demo.mp4",
+  "fixPackets": [
+    {
+      "schemaVersion": "1.0",
+      "id": "CAPTION_TOO_SHORT:0:3",
+      "ruleId": "CAPTION_TOO_SHORT",
+      "severity": "warning",
+      "message": "Caption 1 is displayed for only 400 ms.",
+      "frames": {
+        "from": 0,
+        "to": 3
+      },
+      "timestampSeconds": {
+        "from": 0,
+        "to": 0.3
+      },
+      "expected": {
+        "minimumDurationMs": 650
+      },
+      "actual": {
+        "actualDurationMs": 400
+      },
+      "suggestedActions": [
+        "Increase caption display duration",
+        "Merge it with an adjacent caption when appropriate"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 4 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "CAPTION_TOO_FAST:0:3",
+      "ruleId": "CAPTION_TOO_FAST",
+      "severity": "warning",
+      "message": "Caption 1 requires 27.5 characters per second.",
+      "frames": {
+        "from": 0,
+        "to": 3
+      },
+      "timestampSeconds": {
+        "from": 0,
+        "to": 0.3
+      },
+      "expected": {
+        "maximumCharactersPerSecond": 20
+      },
+      "actual": {
+        "actualCharactersPerSecond": 27.5
+      },
+      "suggestedActions": [
+        "Shorten the caption text",
+        "Increase its display duration or split it at a semantic boundary"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 4 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "CAPTION_OVERLAP:0:3",
+      "ruleId": "CAPTION_OVERLAP",
+      "severity": "error",
+      "message": "Captions 1 and 2 overlap by 50 ms.",
+      "frames": {
+        "from": 0,
+        "to": 3
+      },
+      "timestampSeconds": {
+        "from": 0,
+        "to": 0.3
+      },
+      "suggestedActions": [
+        "Correct adjacent caption timestamps",
+        "Ensure only one caption cue is active at a time"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 4 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "CAPTION_LINE_TOO_LONG:3:17",
+      "ruleId": "CAPTION_LINE_TOO_LONG",
+      "severity": "warning",
+      "message": "Caption 2 has a 23-character line.",
+      "frames": {
+        "from": 3,
+        "to": 17
+      },
+      "timestampSeconds": {
+        "from": 0.3,
+        "to": 1.7
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "expected": {
+        "maximumLineLength": 16
+      },
+      "actual": {
+        "actualLineLength": 23
+      },
+      "suggestedActions": [
+        "Insert a semantic line break",
+        "Shorten the caption for the target language"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 18 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "CAPTION_REGION_COLLISION:3:17",
+      "ruleId": "CAPTION_REGION_COLLISION",
+      "severity": "error",
+      "message": "Caption 2 overlaps declared region cta-primary.",
+      "frames": {
+        "from": 3,
+        "to": 17
+      },
+      "timestampSeconds": {
+        "from": 0.3,
+        "to": 1.7
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "suggestedActions": [
+        "Move the caption or declared UI region",
+        "Use the platform-safe caption layout"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 18 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "UNEXPECTED_SILENCE:10:18",
+      "ruleId": "UNEXPECTED_SILENCE",
+      "severity": "warning",
+      "message": "Audio is silent for 0.81 seconds from 1.00s.",
+      "frames": {
+        "from": 10,
+        "to": 18
+      },
+      "timestampSeconds": {
+        "from": 1,
+        "to": 1.8
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "expected": {
+        "maximumSilenceSeconds": 0.5
+      },
+      "actual": {
+        "durationSeconds": 0.809437,
+        "startSeconds": 1.003833,
+        "endSeconds": 1.813271
+      },
+      "suggestedActions": [
+        "Inspect the mapped dialogue/audio Sequence",
+        "Check gain, mute state, and source duration"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 19 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "EXPECTED_MOTION_MISSING:10:19",
+      "ruleId": "EXPECTED_MOTION_MISSING",
+      "severity": "error",
+      "message": "Expected motion cta-motion averaged 0.0000, below 0.02.",
+      "frames": {
+        "from": 10,
+        "to": 19
+      },
+      "timestampSeconds": {
+        "from": 1,
+        "to": 1.9
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "expected": {
+        "minimumChange": 0.02
+      },
+      "actual": {
+        "averageChange": 0,
+        "maximumChange": 0
+      },
+      "suggestedActions": [
+        "Inspect the mapped component animation",
+        "Verify frame-driven animation values and rerender the affected range"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 20 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "TEXT_TOO_SMALL:10:19",
+      "ruleId": "TEXT_TOO_SMALL",
+      "severity": "error",
+      "message": "Declared text cta-copy is 22px, below 32px.",
+      "frames": {
+        "from": 10,
+        "to": 19
+      },
+      "timestampSeconds": {
+        "from": 1,
+        "to": 1.9
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "expected": {
+        "minimumPx": 32,
+        "maximumLines": 2
+      },
+      "actual": {
+        "fontSizePx": 22
+      },
+      "suggestedActions": [
+        "Increase the base font size",
+        "Reduce line length or use a responsive layout variant"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 20 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "TEXT_TOO_MANY_LINES:10:19",
+      "ruleId": "TEXT_TOO_MANY_LINES",
+      "severity": "error",
+      "message": "Declared text cta-copy uses 3 lines, above 2.",
+      "frames": {
+        "from": 10,
+        "to": 19
+      },
+      "timestampSeconds": {
+        "from": 1,
+        "to": 1.9
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "expected": {
+        "minimumPx": 32,
+        "maximumLines": 2
+      },
+      "actual": {
+        "lineCount": 3
+      },
+      "suggestedActions": [
+        "Shorten the copy",
+        "Increase the text container size or reduce line length"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 20 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "SAFE_AREA_VIOLATION:10:19",
+      "ruleId": "SAFE_AREA_VIOLATION",
+      "severity": "error",
+      "message": "Region cta-primary violates the declared safe area.",
+      "frames": {
+        "from": 10,
+        "to": 19
+      },
+      "timestampSeconds": {
+        "from": 1,
+        "to": 1.9
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "expected": {
+        "platform": "x-video",
+        "marginRatio": 0.05
+      },
+      "actual": {
+        "box": {
+          "x": 0.1,
+          "y": 0.78,
+          "width": 0.8,
+          "height": 0.16
+        },
+        "overlappingZones": [
+          "player-controls"
+        ]
+      },
+      "suggestedActions": [
+        "Move the mapped region away from platform UI",
+        "Use a platform-specific layout variant"
+      ],
+      "reproduce": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --max-frames 20 --json .frameproof/reproduce.json",
+      "verify": "frameproof scan \"examples/source-aware/output/demo.mp4\" --manifest \"./examples/source-aware/manifest.json\" --captions \"./examples/source-aware/captions.srt\" --fail-on-warning"
+    }
+  ]
+}

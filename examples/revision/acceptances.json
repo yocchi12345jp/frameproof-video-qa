@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "acceptances": [
+    {
+      "fingerprint": "replace-with-frameproof-generated-fingerprint",
+      "reason": "Intentional end-card hold approved by the video owner",
+      "owner": "video-team",
+      "match": {
+        "code": "FROZEN_RUN",
+        "sourceFile": "src/scenes/CtaScene.tsx",
+        "component": "CtaScene"
+      }
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0",
+  "toolVersion": "0.6.0",
+  "id": "repair-2026-08-02T14-19-03-c822cb2c",
+  "createdAt": "2026-08-02T14:19:03.629Z",
+  "updatedAt": "2026-08-02T14:19:03.919Z",
+  "state": "approved",
+  "projectRoot": "/path/to/programmatic-video",
+  "reportPath": "/path/to/programmatic-video/.frameproof/before.json",
+  "input": "out/failing.mp4",
+  "compositionId": "RepairDemo",
+  "fps": 30,
+  "agent": {
+    "name": "codex"
+  },
+  "policy": {
+    "requireCleanGit": true,
+    "requireAgentApproval": true,
+    "requireRenderApproval": true,
+    "strictAllowedFiles": true,
+    "maxIterations": 1
+  },
+  "allowedFiles": [
+    "src/scene.js"
+  ],
+  "targets": [
+    {
+      "fingerprint": "d1c3cddf3d7fd69bd36c",
+      "identity": "6f41ff469f0ccb7ecaa0",
+      "code": "BLANK_FRAME",
+      "severity": "error",
+      "fixPacket": {
+        "schemaVersion": "1.0",
+        "id": "BLANK_FRAME:0:59",
+        "ruleId": "BLANK_FRAME",
+        "severity": "error",
+        "message": "60 blank or near-blank frame(s) detected.",
+        "frames": {
+          "from": 0,
+          "to": 59
+        },
+        "timestampSeconds": {
+          "from": 0,
+          "to": 1.9666666666666666
+        },
+        "source": {
+          "file": "src/scene.js",
+          "line": 1
+        },
+        "contexts": [
+          {
+            "id": "main",
+            "role": "content",
+            "source": {
+              "file": "src/scene.js",
+              "line": 1
+            },
+            "from": 0,
+            "to": 59
+          }
+        ],
+        "suggestedActions": [
+          "Inspect the first reported frame for missing assets or opacity transitions",
+          "Add an explicit background or shorten the empty transition"
+        ],
+        "reproduce": "frameproof scan \"out/failing.mp4\" --manifest \"/path/to/programmatic-video/.frameproof/manifest.json\" --max-frames 60 --json .frameproof/reproduce.json",
+        "verify": "frameproof scan \"out/failing.mp4\" --manifest \"/path/to/programmatic-video/.frameproof/manifest.json\" --fail-on-warning"
+      }
+    },
+    {
+      "fingerprint": "9fadf6e7b2c1612dc88d",
+      "identity": "79bf7eb61b807b756d17",
+      "code": "EXPECTED_VISIBLE_MISSING",
+      "severity": "error",
+      "fixPacket": {
+        "schemaVersion": "1.0",
+        "id": "EXPECTED_VISIBLE_MISSING:0:59",
+        "ruleId": "EXPECTED_VISIBLE_MISSING",
+        "severity": "error",
+        "message": "Expected visible content main-visible was present in 0.0% of frames.",
+        "frames": {
+          "from": 0,
+          "to": 59
+        },
+        "timestampSeconds": {
+          "from": 0,
+          "to": 1.9666666666666666
+        },
+        "source": {
+          "file": "src/scene.js",
+          "line": 1
+        },
+        "contexts": [
+          {
+            "id": "main",
+            "role": "content",
+            "source": {
+              "file": "src/scene.js",
+              "line": 1
+            },
+            "from": 0,
+            "to": 59
+          }
+        ],
+        "expected": {
+          "minimumStdDev": 4
+        },
+        "actual": {
+          "visibleRatio": 0
+        },
+        "suggestedActions": [
+          "Check opacity, z-index, asset loading, and Sequence timing",
+          "Rerender only the affected frame range"
+        ],
+        "reproduce": "frameproof scan \"out/failing.mp4\" --manifest \"/path/to/programmatic-video/.frameproof/manifest.json\" --max-frames 60 --json .frameproof/reproduce.json",
+        "verify": "frameproof scan \"out/failing.mp4\" --manifest \"/path/to/programmatic-video/.frameproof/manifest.json\" --fail-on-warning"
+      }
+    }
+  ],
+  "ranges": [
+    {
+      "from": 0,
+      "to": 59,
+      "findingIds": [
+        "BLANK_FRAME:0:59",
+        "EXPECTED_VISIBLE_MISSING:0:59"
+      ],
+      "sourceFiles": [
+        "src/scene.js"
+      ]
+    }
+  ],
+  "commands": {
+    "renderFull": "cp '/path/to/programmatic-video/out/passing.mp4' \"{output}\""
+  },
+  "outputVideo": "/path/to/programmatic-video/.frameproof/repaired.mp4",
+  "attempts": [
+    {
+      "number": 1,
+      "type": "agent",
+      "agent": "custom",
+      "startedAt": "2026-08-02T14:19:03.690Z",
+      "finishedAt": "2026-08-02T14:19:03.720Z",
+      "command": [
+        "codex",
+        "exec",
+        "--ephemeral"
+      ],
+      "exitCode": 0,
+      "timedOut": false,
+      "stdout": "[agent output omitted in checked-in example]",
+      "stderr": "",
+      "git": {
+        "before": {
+          "isRepository": true,
+          "projectRoot": "/path/to/programmatic-video",
+          "head": "82684153da84f1b3cc5769f298ad28199501c8f6",
+          "clean": true,
+          "status": [],
+          "changedFiles": [],
+          "fileHashes": {},
+          "diff": "",
+          "diffSha256": "14f0ffe013a12555f6c326e67ee5bda820f8a0f5714ce05ea088b26c5638ce75"
+        },
+        "after": {
+          "isRepository": true,
+          "projectRoot": "/path/to/programmatic-video",
+          "head": "82684153da84f1b3cc5769f298ad28199501c8f6",
+          "clean": false,
+          "status": [
+            " M src/scene.js"
+          ],
+          "changedFiles": [
+            "src/scene.js"
+          ],
+          "fileHashes": {
+            "src/scene.js": "ad4ce4306472d192850884cc10fc66432f957d2dbd39dceccbc4a4b76aa21196"
+          },
+          "diff": "diff --git a/src/scene.js b/src/scene.js\nindex 6c84784..d560e3f 100644\n--- a/src/scene.js\n+++ b/src/scene.js\n@@ -1 +1 @@\n-export const message = 'before';\n+export const message = 'after';\n",
+          "diffSha256": "e8d0befb5596cb83ade52d1f46d4ed2d1a79bb9a8465f640f45988a4ffa4b49d"
+        },
+        "changedFiles": [
+          "src/scene.js"
+        ],
+        "unexpectedFiles": []
+      }
+    },
+    {
+      "number": 2,
+      "type": "full-render",
+      "startedAt": "2026-08-02T14:19:03.721Z",
+      "finishedAt": "2026-08-02T14:19:03.723Z",
+      "command": "cp '/path/to/programmatic-video/out/passing.mp4' \"/path/to/programmatic-video/.frameproof/repaired.mp4\"",
+      "output": "/path/to/programmatic-video/.frameproof/repaired.mp4",
+      "exitCode": 0,
+      "stdout": "[agent output omitted in checked-in example]",
+      "stderr": "",
+      "timedOut": false
+    },
+    {
+      "number": 3,
+      "type": "loop-verification",
+      "iteration": 1,
+      "startedAt": "2026-08-02T14:19:03.859Z",
+      "finishedAt": "2026-08-02T14:19:03.859Z",
+      "passed": true,
+      "summary": {
+        "new": 1,
+        "regressed": 0,
+        "improved": 0,
+        "unchanged": 0,
+        "accepted": 0,
+        "resolved": 2,
+        "blocking": 0,
+        "warningRegressions": 1,
+        "passed": true
+      },
+      "stdout": "[agent output omitted in checked-in example]",
+      "stderr": ""
+    }
+  ],
+  "approvals": [
+    {
+      "schemaVersion": "1.0",
+      "repairSessionId": "repair-2026-08-02T14-19-03-c822cb2c",
+      "approvedAt": "2026-08-02T14:19:03.919Z",
+      "owner": "integration-reviewer",
+      "reason": "CLI integration reviewed",
+      "verification": {
+        "verifiedAt": "2026-08-02T14:19:03.859Z",
+        "video": "/path/to/programmatic-video/.frameproof/repaired.mp4",
+        "passed": true,
+        "currentReportPath": "/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/current-report.json",
+        "revisionPath": "/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/repair-revision.json",
+        "summary": {
+          "new": 1,
+          "regressed": 0,
+          "improved": 0,
+          "unchanged": 0,
+          "accepted": 0,
+          "resolved": 2,
+          "blocking": 0,
+          "warningRegressions": 1,
+          "passed": true
+        },
+        "targetCount": 2,
+        "unresolvedTargetCount": 0,
+        "unresolvedTargets": [],
+        "newOrRegressedErrorCount": 0
+      },
+      "git": {
+        "head": "82684153da84f1b3cc5769f298ad28199501c8f6",
+        "changedFiles": [
+          "src/scene.js"
+        ],
+        "fileHashes": {
+          "src/scene.js": "ad4ce4306472d192850884cc10fc66432f957d2dbd39dceccbc4a4b76aa21196"
+        },
+        "diffSha256": "e8d0befb5596cb83ade52d1f46d4ed2d1a79bb9a8465f640f45988a4ffa4b49d"
+      },
+      "receiptSha256": "f7a4f34fa845044e57786ae9db8c2483fa7967258f1e31a369cf15039f2f76bf"
+    }
+  ],
+  "prompt": "# FrameProof repair task\n\nYou are repairing a programmatic video project. Work only inside the project directory. Read AGENTS.md and CLAUDE.md when present.\n\n## Goal\nResolve the selected FrameProof findings with the smallest maintainable source change. Preserve unrelated behavior and visual design. Do not commit, push, publish, install global packages, or change credentials.\n\n## Safety constraints\n- Primary target files: `src/scene.js`\n- Do not edit generated reports, rendered media, lockfiles, secrets, or CI configuration unless the finding directly requires it.\n- Run the project's existing focused checks after editing.\n- Do not render the full video unless the project instructions require it; FrameProof will perform verification separately.\n- Stop and explain instead of guessing when source mapping is insufficient.\n\n## Selected findings\n### 1. BLANK_FRAME (error)\n60 blank or near-blank frame(s) detected.\n- Source: src/scene.js:1\n- Frames: 0-59\n- Suggested actions: Inspect the first reported frame for missing assets or opacity transitions; Add an explicit background or shorten the empty transition\n\n### 2. EXPECTED_VISIBLE_MISSING (error)\nExpected visible content main-visible was present in 0.0% of frames.\n- Source: src/scene.js:1\n- Frames: 0-59\n- Expected: {\"minimumStdDev\":4}\n- Actual: {\"visibleRatio\":0}\n- Suggested actions: Check opacity, z-index, asset loading, and Sequence timing; Rerender only the affected frame range\n\n## Verification context\n- Input: out/failing.mp4\n- Composition: RepairDemo\n- FPS: 30\n- Repair preview ranges: 0-59\n\nAt the end, summarize changed files, the reason for each change, tests run, and any remaining risk.\n",
+  "verification": {
+    "verifiedAt": "2026-08-02T14:19:03.859Z",
+    "video": "/path/to/programmatic-video/.frameproof/repaired.mp4",
+    "passed": true,
+    "currentReportPath": "/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/current-report.json",
+    "revisionPath": "/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/repair-revision.json",
+    "summary": {
+      "new": 1,
+      "regressed": 0,
+      "improved": 0,
+      "unchanged": 0,
+      "accepted": 0,
+      "resolved": 2,
+      "blocking": 0,
+      "warningRegressions": 1,
+      "passed": true
+    },
+    "targetCount": 2,
+    "unresolvedTargetCount": 0,
+    "unresolvedTargets": [],
+    "newOrRegressedErrorCount": 0
+  }
+}

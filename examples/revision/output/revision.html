@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FrameProof revision report</title><style>
+:root{color-scheme:light dark;--bg:#f6f8fa;--surface:#fff;--text:#1f2328;--muted:#59636e;--border:#d0d7de;--blue:#0969da;--red:#cf222e;--orange:#9a6700;--green:#1a7f37;--purple:#8250df;--gray:#6e7781}@media(prefers-color-scheme:dark){:root{--bg:#0d1117;--surface:#161b22;--text:#f0f6fc;--muted:#9198a1;--border:#30363d;--blue:#4493f8;--red:#ff7b72;--orange:#d29922;--green:#3fb950;--purple:#a371f7;--gray:#8c959f}}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1180px;margin:36px auto;padding:0 20px}header,.panel,.change{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}h1{margin:0 0 6px;font-size:28px}.muted,.source{color:var(--muted)}.gate{font-weight:800;color:var(--red)}.metrics{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin-top:18px}.metric{border:1px solid var(--border);border-radius:9px;padding:12px}.metric span{display:block;color:var(--muted);font-size:12px}.metric strong{font-size:22px}.changes{display:flex;flex-direction:column;gap:12px}.change{margin:0;border-left:5px solid var(--gray)}.change.new,.change.regressed{border-left-color:var(--red)}.change.improved,.change.resolved{border-left-color:var(--green)}.change.accepted{border-left-color:var(--purple)}.change-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:12px}.status,.severity{border-radius:999px;padding:3px 8px;font-weight:700;background:var(--bg)}.status{color:var(--blue)}.severity.error{color:var(--red)}.severity.warning{color:var(--orange)}h3{font-size:16px;margin:12px 0 6px}.frames{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}figure{margin:0}img,.empty{width:100%;aspect-ratio:16/9;object-fit:contain;background:#050505;border:1px solid var(--border);border-radius:8px}.empty{display:grid;place-items:center;color:var(--muted)}figcaption{font-size:12px;color:var(--muted);padding-top:5px}summary{cursor:pointer;color:var(--blue);font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}@media(max-width:900px){.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:640px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.frames{grid-template-columns:1fr}}
+</style></head><body><main><header><h1>FrameProof revision report</h1><div class="gate">FAILED</div><p class="muted">Baseline: examples/source-aware/output/demo.mp4<br>Current: examples/source-aware/output/demo.mp4</p><div class="metrics"><div class="metric"><span>New</span><strong>2</strong></div><div class="metric"><span>Regressed</span><strong>3</strong></div><div class="metric"><span>Improved</span><strong>2</strong></div><div class="metric"><span>Resolved</span><strong>1</strong></div><div class="metric"><span>Accepted</span><strong>1</strong></div><div class="metric"><span>Unchanged</span><strong>2</strong></div><div class="metric"><span>Blocking</span><strong>3</strong></div></div></header><section class="panel"><h2>Changed findings</h2><div class="changes"><article class="change regressed"><div class="change-head"><span class="status">regressed</span><span class="severity warning">warning</span><code>CAPTION_TOO_FAST</code><span>0.00s</span></div><h3>Caption 1 requires 27.5 characters per second.</h3><p class="source">—</p><div class="frames">
+      <figure><img src="filmstrip/01-regressed-0e16818c-baseline.jpg" alt="Baseline frame"><figcaption>Baseline · 0.00s</figcaption></figure>
+      <figure><img src="filmstrip/01-regressed-0e16818c-current.jpg" alt="Current frame"><figcaption>Current · 0.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;regressed&quot;,
+  &quot;fingerprint&quot;: &quot;0e16818c7c4f462b6e89&quot;,
+  &quot;identity&quot;: &quot;05b060a9a0f74c343a46&quot;,
+  &quot;baselineFingerprint&quot;: &quot;0e16818c7c4f462b6e89&quot;,
+  &quot;severityDelta&quot;: 0,
+  &quot;metricDelta&quot;: 0.275,
+  &quot;currentMetric&quot;: 1.375,
+  &quot;baselineMetric&quot;: 1.1
+}</pre></details></article>
+<article class="change new"><div class="change-head"><span class="status">new</span><span class="severity error">error</span><code>CAPTION_OVERLAP</code><span>0.00s</span></div><h3>Captions 1 and 2 overlap by 50 ms.</h3><p class="source">—</p><div class="frames">
+      <figure><div class="empty">No baseline frame</div><figcaption>Baseline · 0.00s</figcaption></figure>
+      <figure><img src="filmstrip/02-new-a2fd083f-current.jpg" alt="Current frame"><figcaption>Current · 0.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;new&quot;,
+  &quot;fingerprint&quot;: &quot;a2fd083f916c60927657&quot;,
+  &quot;identity&quot;: &quot;252b2896ab2f03498765&quot;
+}</pre></details></article>
+<article class="change improved"><div class="change-head"><span class="status">improved</span><span class="severity warning">warning</span><code>CAPTION_LINE_TOO_LONG</code><span>0.30s</span></div><h3>Caption 2 has a 23-character line.</h3><p class="source">src/scenes/CtaScene.tsx:42</p><div class="frames">
+      <figure><img src="filmstrip/03-improved-3dc96701-baseline.jpg" alt="Baseline frame"><figcaption>Baseline · 0.30s</figcaption></figure>
+      <figure><img src="filmstrip/03-improved-3dc96701-current.jpg" alt="Current frame"><figcaption>Current · 0.30s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;improved&quot;,
+  &quot;fingerprint&quot;: &quot;3dc9670177ec6fce9783&quot;,
+  &quot;identity&quot;: &quot;ec3908b60aad09cd8903&quot;,
+  &quot;baselineFingerprint&quot;: &quot;3dc9670177ec6fce9783&quot;,
+  &quot;severityDelta&quot;: 0,
+  &quot;metricDelta&quot;: -3,
+  &quot;currentMetric&quot;: 7,
+  &quot;baselineMetric&quot;: 10
+}</pre></details></article>
+<article class="change accepted"><div class="change-head"><span class="status">accepted</span><span class="severity error">error</span><code>CAPTION_REGION_COLLISION</code><span>0.30s</span></div><h3>Caption 2 overlaps declared region cta-primary.</h3><p class="source">src/scenes/CtaScene.tsx:42</p><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;fingerprint&quot;: &quot;187b75825e1a9c3a3ab0&quot;,
+  &quot;identity&quot;: &quot;7eb5deabbff7134f2670&quot;,
+  &quot;baselineFingerprint&quot;: &quot;187b75825e1a9c3a3ab0&quot;,
+  &quot;acceptedBy&quot;: {
+    &quot;reason&quot;: &quot;Approved CTA-caption overlap for this end card&quot;,
+    &quot;owner&quot;: &quot;video-team&quot;
+  },
+  &quot;severityDelta&quot;: 0
+}</pre></details></article>
+<article class="change regressed"><div class="change-head"><span class="status">regressed</span><span class="severity warning">warning</span><code>UNEXPECTED_SILENCE</code><span>1.00s</span></div><h3>Audio is silent for 0.81 seconds from 1.00s.</h3><p class="source">src/scenes/CtaScene.tsx:42</p><div class="frames">
+      <figure><img src="filmstrip/04-regressed-7cc2fac6-baseline.jpg" alt="Baseline frame"><figcaption>Baseline · 1.00s</figcaption></figure>
+      <figure><img src="filmstrip/04-regressed-7cc2fac6-current.jpg" alt="Current frame"><figcaption>Current · 1.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;regressed&quot;,
+  &quot;fingerprint&quot;: &quot;7cc2fac6941da2a73355&quot;,
+  &quot;identity&quot;: &quot;99b2ea2d3bc98175e869&quot;,
+  &quot;baselineFingerprint&quot;: &quot;7cc2fac6941da2a73355&quot;,
+  &quot;severityDelta&quot;: 0,
+  &quot;metricDelta&quot;: 0.109437,
+  &quot;currentMetric&quot;: 0.309437,
+  &quot;baselineMetric&quot;: 0.2
+}</pre></details></article>
+<article class="change regressed"><div class="change-head"><span class="status">regressed</span><span class="severity error">error</span><code>EXPECTED_MOTION_MISSING</code><span>1.00s</span></div><h3>Expected motion cta-motion averaged 0.0000, below 0.02.</h3><p class="source">src/scenes/CtaScene.tsx:42</p><div class="frames">
+      <figure><img src="filmstrip/05-regressed-77871a59-baseline.jpg" alt="Baseline frame"><figcaption>Baseline · 1.00s</figcaption></figure>
+      <figure><img src="filmstrip/05-regressed-77871a59-current.jpg" alt="Current frame"><figcaption>Current · 1.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;regressed&quot;,
+  &quot;fingerprint&quot;: &quot;77871a599dfe9dbcf1cb&quot;,
+  &quot;identity&quot;: &quot;ca4576c61465a97f3121&quot;,
+  &quot;baselineFingerprint&quot;: &quot;77871a599dfe9dbcf1cb&quot;,
+  &quot;severityDelta&quot;: 0,
+  &quot;metricDelta&quot;: 0.005,
+  &quot;currentMetric&quot;: 0.02,
+  &quot;baselineMetric&quot;: 0.015
+}</pre></details></article>
+<article class="change improved"><div class="change-head"><span class="status">improved</span><span class="severity error">error</span><code>TEXT_TOO_SMALL</code><span>1.00s</span></div><h3>Declared text cta-copy is 22px, below 32px.</h3><p class="source">src/scenes/CtaScene.tsx:42</p><div class="frames">
+      <figure><img src="filmstrip/06-improved-ea821f77-baseline.jpg" alt="Baseline frame"><figcaption>Baseline · 1.00s</figcaption></figure>
+      <figure><img src="filmstrip/06-improved-ea821f77-current.jpg" alt="Current frame"><figcaption>Current · 1.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;improved&quot;,
+  &quot;fingerprint&quot;: &quot;ea821f77a162eb39ac2a&quot;,
+  &quot;identity&quot;: &quot;8afecfbc3a50287c362f&quot;,
+  &quot;baselineFingerprint&quot;: &quot;ea821f77a162eb39ac2a&quot;,
+  &quot;severityDelta&quot;: 0,
+  &quot;metricDelta&quot;: -2,
+  &quot;currentMetric&quot;: 10,
+  &quot;baselineMetric&quot;: 12
+}</pre></details></article>
+<article class="change new"><div class="change-head"><span class="status">new</span><span class="severity error">error</span><code>SAFE_AREA_VIOLATION</code><span>1.00s</span></div><h3>Region cta-primary violates the declared safe area.</h3><p class="source">src/scenes/CtaScene.tsx:42</p><div class="frames">
+      <figure><div class="empty">No baseline frame</div><figcaption>Baseline · 0.00s</figcaption></figure>
+      <figure><img src="filmstrip/07-new-5cf2a02b-current.jpg" alt="Current frame"><figcaption>Current · 1.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;new&quot;,
+  &quot;fingerprint&quot;: &quot;5cf2a02bee890959e798&quot;,
+  &quot;identity&quot;: &quot;a8934538e306b2428a67&quot;
+}</pre></details></article>
+<article class="change resolved"><div class="change-head"><span class="status">resolved</span><span class="severity warning">warning</span><code>AUDIO_TRUE_PEAK_TOO_HIGH</code><span>0.40s</span></div><h3>Audio true peak was -0.2 dBTP, above -1 dBTP.</h3><p class="source">src/scenes/IntroScene.tsx:18</p><div class="frames">
+      <figure><img src="filmstrip/08-resolved-c0f7b1b0-baseline.jpg" alt="Baseline frame"><figcaption>Baseline · 0.40s</figcaption></figure>
+      <figure><div class="empty">No current frame</div><figcaption>Current · 0.00s</figcaption></figure>
+    </div><details><summary>Comparison details</summary><pre>{
+  &quot;status&quot;: &quot;resolved&quot;,
+  &quot;fingerprint&quot;: &quot;c0f7b1b025070fa83f1d&quot;
+}</pre></details></article></div></section></main></body></html>

@@ -1,0 +1,8 @@
+FrameProof scanned 20 frame(s) at 10 fps.
+Input: 320x180 h264/yuv420p
+Preset: x-ad
+Errors: 1 | Warnings: 2
+[ERROR] BLANK_FRAME: 10 blank or near-blank frame(s) detected.
+[WARNING] EDGE_ACTIVITY: 10 frame(s) contain dense visual activity inside the outer 5% margin.
+[WARNING] FROZEN_RUN: Frames 0-9 remain visually unchanged for 1.00 seconds.
+exit_code=1

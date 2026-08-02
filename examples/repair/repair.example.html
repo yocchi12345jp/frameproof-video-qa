@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FrameProof Repair repair-2026-08-02T14-19-03-c822cb2c</title><style>body{font:14px/1.5 system-ui,sans-serif;margin:0;background:#f6f8fa;color:#1f2328}main{max-width:1100px;margin:32px auto;padding:0 20px}.card{background:white;border:1px solid #d0d7de;border-radius:12px;padding:20px;margin:16px 0}h1{font-size:28px}h2{font-size:18px}code,pre{font-family:ui-monospace,monospace}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid #d8dee4;vertical-align:top}.state{display:inline-block;padding:4px 10px;border-radius:999px;background:#ddf4ff;color:#0969da;font-weight:700}.pass{background:#dafbe1;color:#1a7f37}.fail{background:#ffebe9;color:#cf222e}</style></head><body><main><h1>FrameProof Repair</h1><p><span class="state pass">approved</span> <code>repair-2026-08-02T14-19-03-c822cb2c</code></p><section class="card"><h2>Scope</h2><p>Project: <code>/path/to/programmatic-video</code></p><p>Agent: codex</p><p>Allowed files: <code>src/scene.js</code></p></section><section class="card"><h2>Targets</h2><table><thead><tr><th>Rule</th><th>Severity</th><th>Revision</th><th>Source</th><th>Message</th></tr></thead><tbody><tr><td>BLANK_FRAME</td><td>error</td><td>current</td><td>src/scene.js</td><td>60 blank or near-blank frame(s) detected.</td></tr><tr><td>EXPECTED_VISIBLE_MISSING</td><td>error</td><td>current</td><td>src/scene.js</td><td>Expected visible content main-visible was present in 0.0% of frames.</td></tr></tbody></table></section><section class="card"><h2>Attempts</h2><table><thead><tr><th>#</th><th>Type</th><th>Exit</th><th>Finished</th></tr></thead><tbody><tr><td>1</td><td>agent</td><td>0</td><td>2026-08-02T14:19:03.720Z</td></tr><tr><td>2</td><td>full-render</td><td>0</td><td>2026-08-02T14:19:03.723Z</td></tr><tr><td>3</td><td>loop-verification</td><td></td><td>2026-08-02T14:19:03.859Z</td></tr></tbody></table></section><section class="card"><h2>Verification</h2><pre>{
+  &quot;verifiedAt&quot;: &quot;2026-08-02T14:19:03.859Z&quot;,
+  &quot;video&quot;: &quot;/path/to/programmatic-video/.frameproof/repaired.mp4&quot;,
+  &quot;passed&quot;: true,
+  &quot;currentReportPath&quot;: &quot;/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/current-report.json&quot;,
+  &quot;revisionPath&quot;: &quot;/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/repair-revision.json&quot;,
+  &quot;summary&quot;: {
+    &quot;new&quot;: 1,
+    &quot;regressed&quot;: 0,
+    &quot;improved&quot;: 0,
+    &quot;unchanged&quot;: 0,
+    &quot;accepted&quot;: 0,
+    &quot;resolved&quot;: 2,
+    &quot;blocking&quot;: 0,
+    &quot;warningRegressions&quot;: 1,
+    &quot;passed&quot;: true
+  },
+  &quot;targetCount&quot;: 2,
+  &quot;unresolvedTargetCount&quot;: 0,
+  &quot;unresolvedTargets&quot;: [],
+  &quot;newOrRegressedErrorCount&quot;: 0
+}</pre></section><section class="card"><h2>Human approvals</h2><pre>[
+  {
+    &quot;schemaVersion&quot;: &quot;1.0&quot;,
+    &quot;repairSessionId&quot;: &quot;repair-2026-08-02T14-19-03-c822cb2c&quot;,
+    &quot;approvedAt&quot;: &quot;2026-08-02T14:19:03.919Z&quot;,
+    &quot;owner&quot;: &quot;integration-reviewer&quot;,
+    &quot;reason&quot;: &quot;CLI integration reviewed&quot;,
+    &quot;verification&quot;: {
+      &quot;verifiedAt&quot;: &quot;2026-08-02T14:19:03.859Z&quot;,
+      &quot;video&quot;: &quot;/path/to/programmatic-video/.frameproof/repaired.mp4&quot;,
+      &quot;passed&quot;: true,
+      &quot;currentReportPath&quot;: &quot;/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/current-report.json&quot;,
+      &quot;revisionPath&quot;: &quot;/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/repair-revision.json&quot;,
+      &quot;summary&quot;: {
+        &quot;new&quot;: 1,
+        &quot;regressed&quot;: 0,
+        &quot;improved&quot;: 0,
+        &quot;unchanged&quot;: 0,
+        &quot;accepted&quot;: 0,
+        &quot;resolved&quot;: 2,
+        &quot;blocking&quot;: 0,
+        &quot;warningRegressions&quot;: 1,
+        &quot;passed&quot;: true
+      },
+      &quot;targetCount&quot;: 2,
+      &quot;unresolvedTargetCount&quot;: 0,
+      &quot;unresolvedTargets&quot;: [],
+      &quot;newOrRegressedErrorCount&quot;: 0
+    },
+    &quot;git&quot;: {
+      &quot;head&quot;: &quot;82684153da84f1b3cc5769f298ad28199501c8f6&quot;,
+      &quot;changedFiles&quot;: [
+        &quot;src/scene.js&quot;
+      ],
+      &quot;fileHashes&quot;: {
+        &quot;src/scene.js&quot;: &quot;ad4ce4306472d192850884cc10fc66432f957d2dbd39dceccbc4a4b76aa21196&quot;
+      },
+      &quot;diffSha256&quot;: &quot;e8d0befb5596cb83ade52d1f46d4ed2d1a79bb9a8465f640f45988a4ffa4b49d&quot;
+    },
+    &quot;receiptSha256&quot;: &quot;f7a4f34fa845044e57786ae9db8c2483fa7967258f1e31a369cf15039f2f76bf&quot;
+  }
+]</pre></section></main></body></html>

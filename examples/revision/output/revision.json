@@ -1,0 +1,1648 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-02T13:35:12.953Z",
+  "baseline": {
+    "input": "examples/source-aware/output/demo.mp4",
+    "generatedAt": "2026-08-01T00:00:00.000Z",
+    "schemaVersion": "2.1",
+    "fps": 10,
+    "durationSeconds": 2
+  },
+  "current": {
+    "input": "examples/source-aware/output/demo.mp4",
+    "generatedAt": "2026-08-02T13:34:08.528Z",
+    "schemaVersion": "2.1",
+    "fps": 10,
+    "durationSeconds": 2
+  },
+  "summary": {
+    "new": 2,
+    "regressed": 3,
+    "improved": 2,
+    "unchanged": 2,
+    "accepted": 1,
+    "resolved": 1,
+    "blocking": 3,
+    "warningRegressions": 2,
+    "passed": false
+  },
+  "items": [
+    {
+      "status": "unchanged",
+      "fingerprint": "212243b3859686c42106",
+      "current": {
+        "code": "CAPTION_TOO_SHORT",
+        "severity": "warning",
+        "message": "Caption 1 is displayed for only 400 ms.",
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "details": {
+          "captionId": "1",
+          "startMs": 0,
+          "endMs": 400,
+          "text": "これは短すぎる字幕です",
+          "actualDurationMs": 400,
+          "minimumDurationMs": 650
+        },
+        "fixPacketId": "CAPTION_TOO_SHORT:0:3",
+        "revision": {
+          "status": "unchanged",
+          "fingerprint": "212243b3859686c42106",
+          "identity": "6170336ae0ce8244ddd6",
+          "baselineFingerprint": "212243b3859686c42106",
+          "severityDelta": 0,
+          "metricDelta": 0,
+          "currentMetric": 250,
+          "baselineMetric": 250
+        }
+      },
+      "baseline": {
+        "code": "CAPTION_TOO_SHORT",
+        "severity": "warning",
+        "message": "Caption 1 is displayed for only 400 ms.",
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "details": {
+          "captionId": "1",
+          "startMs": 0,
+          "endMs": 400,
+          "text": "これは短すぎる字幕です",
+          "actualDurationMs": 400,
+          "minimumDurationMs": 650
+        },
+        "fixPacketId": "CAPTION_TOO_SHORT:0:3"
+      },
+      "change": {
+        "status": "unchanged",
+        "fingerprint": "212243b3859686c42106",
+        "identity": "6170336ae0ce8244ddd6",
+        "baselineFingerprint": "212243b3859686c42106",
+        "severityDelta": 0,
+        "metricDelta": 0,
+        "currentMetric": 250,
+        "baselineMetric": 250
+      }
+    },
+    {
+      "status": "regressed",
+      "fingerprint": "0e16818c7c4f462b6e89",
+      "current": {
+        "code": "CAPTION_TOO_FAST",
+        "severity": "warning",
+        "message": "Caption 1 requires 27.5 characters per second.",
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "details": {
+          "captionId": "1",
+          "startMs": 0,
+          "endMs": 400,
+          "text": "これは短すぎる字幕です",
+          "actualCharactersPerSecond": 27.5,
+          "maximumCharactersPerSecond": 20
+        },
+        "fixPacketId": "CAPTION_TOO_FAST:0:3",
+        "revision": {
+          "status": "regressed",
+          "fingerprint": "0e16818c7c4f462b6e89",
+          "identity": "05b060a9a0f74c343a46",
+          "baselineFingerprint": "0e16818c7c4f462b6e89",
+          "severityDelta": 0,
+          "metricDelta": 0.275,
+          "currentMetric": 1.375,
+          "baselineMetric": 1.1
+        }
+      },
+      "baseline": {
+        "code": "CAPTION_TOO_FAST",
+        "severity": "warning",
+        "message": "Caption 1 requires 22 characters per second.",
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "details": {
+          "captionId": "1",
+          "startMs": 0,
+          "endMs": 400,
+          "text": "これは短すぎる字幕です",
+          "actualCharactersPerSecond": 22,
+          "maximumCharactersPerSecond": 20
+        },
+        "fixPacketId": "CAPTION_TOO_FAST:0:3"
+      },
+      "change": {
+        "status": "regressed",
+        "fingerprint": "0e16818c7c4f462b6e89",
+        "identity": "05b060a9a0f74c343a46",
+        "baselineFingerprint": "0e16818c7c4f462b6e89",
+        "severityDelta": 0,
+        "metricDelta": 0.275,
+        "currentMetric": 1.375,
+        "baselineMetric": 1.1
+      }
+    },
+    {
+      "status": "new",
+      "fingerprint": "a2fd083f916c60927657",
+      "current": {
+        "code": "CAPTION_OVERLAP",
+        "severity": "error",
+        "message": "Captions 1 and 2 overlap by 50 ms.",
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "details": {
+          "captionId": "1",
+          "startMs": 0,
+          "endMs": 400,
+          "text": "これは短すぎる字幕です",
+          "nextCaptionId": "2",
+          "overlapMs": 50
+        },
+        "fixPacketId": "CAPTION_OVERLAP:0:3",
+        "revision": {
+          "status": "new",
+          "fingerprint": "a2fd083f916c60927657",
+          "identity": "252b2896ab2f03498765"
+        }
+      },
+      "change": {
+        "status": "new",
+        "fingerprint": "a2fd083f916c60927657",
+        "identity": "252b2896ab2f03498765"
+      }
+    },
+    {
+      "status": "improved",
+      "fingerprint": "3dc9670177ec6fce9783",
+      "current": {
+        "code": "CAPTION_LINE_TOO_LONG",
+        "severity": "warning",
+        "message": "Caption 2 has a 23-character line.",
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "details": {
+          "captionId": "2",
+          "startMs": 350,
+          "endMs": 1800,
+          "text": "CTAと重なる可能性のある長い字幕テキストです",
+          "actualLineLength": 23,
+          "maximumLineLength": 16,
+          "language": "ja"
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "CAPTION_LINE_TOO_LONG:3:17",
+        "revision": {
+          "status": "improved",
+          "fingerprint": "3dc9670177ec6fce9783",
+          "identity": "ec3908b60aad09cd8903",
+          "baselineFingerprint": "3dc9670177ec6fce9783",
+          "severityDelta": 0,
+          "metricDelta": -3,
+          "currentMetric": 7,
+          "baselineMetric": 10
+        }
+      },
+      "baseline": {
+        "code": "CAPTION_LINE_TOO_LONG",
+        "severity": "warning",
+        "message": "Caption 2 has a 26-character line.",
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "details": {
+          "captionId": "2",
+          "startMs": 350,
+          "endMs": 1800,
+          "text": "CTAと重なる可能性のある長い字幕テキストです",
+          "actualLineLength": 26,
+          "maximumLineLength": 16,
+          "language": "ja"
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "CAPTION_LINE_TOO_LONG:3:17"
+      },
+      "change": {
+        "status": "improved",
+        "fingerprint": "3dc9670177ec6fce9783",
+        "identity": "ec3908b60aad09cd8903",
+        "baselineFingerprint": "3dc9670177ec6fce9783",
+        "severityDelta": 0,
+        "metricDelta": -3,
+        "currentMetric": 7,
+        "baselineMetric": 10
+      }
+    },
+    {
+      "status": "accepted",
+      "fingerprint": "187b75825e1a9c3a3ab0",
+      "current": {
+        "code": "CAPTION_REGION_COLLISION",
+        "severity": "error",
+        "message": "Caption 2 overlaps declared region cta-primary.",
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "details": {
+          "captionId": "2",
+          "startMs": 350,
+          "endMs": 1800,
+          "text": "CTAと重なる可能性のある長い字幕テキストです",
+          "regionId": "cta-primary",
+          "captionBox": {
+            "x": 0.08,
+            "y": 0.72,
+            "width": 0.84,
+            "height": 0.2
+          },
+          "regionBox": {
+            "x": 0.1,
+            "y": 0.78,
+            "width": 0.8,
+            "height": 0.16
+          }
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "CAPTION_REGION_COLLISION:3:17",
+        "revision": {
+          "status": "accepted",
+          "fingerprint": "187b75825e1a9c3a3ab0",
+          "identity": "7eb5deabbff7134f2670",
+          "baselineFingerprint": "187b75825e1a9c3a3ab0",
+          "acceptedBy": {
+            "reason": "Approved CTA-caption overlap for this end card",
+            "owner": "video-team"
+          },
+          "severityDelta": 0
+        }
+      },
+      "baseline": {
+        "code": "CAPTION_REGION_COLLISION",
+        "severity": "error",
+        "message": "Caption 2 overlaps declared region cta-primary.",
+        "frames": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "details": {
+          "captionId": "2",
+          "startMs": 350,
+          "endMs": 1800,
+          "text": "CTAと重なる可能性のある長い字幕テキストです",
+          "regionId": "cta-primary",
+          "captionBox": {
+            "x": 0.08,
+            "y": 0.72,
+            "width": 0.84,
+            "height": 0.2
+          },
+          "regionBox": {
+            "x": 0.1,
+            "y": 0.78,
+            "width": 0.8,
+            "height": 0.16
+          }
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "CAPTION_REGION_COLLISION:3:17"
+      },
+      "change": {
+        "status": "accepted",
+        "fingerprint": "187b75825e1a9c3a3ab0",
+        "identity": "7eb5deabbff7134f2670",
+        "baselineFingerprint": "187b75825e1a9c3a3ab0",
+        "acceptedBy": {
+          "reason": "Approved CTA-caption overlap for this end card",
+          "owner": "video-team"
+        },
+        "severityDelta": 0
+      }
+    },
+    {
+      "status": "regressed",
+      "fingerprint": "7cc2fac6941da2a73355",
+      "current": {
+        "code": "UNEXPECTED_SILENCE",
+        "severity": "warning",
+        "message": "Audio is silent for 0.81 seconds from 1.00s.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "details": {
+          "actual": {
+            "durationSeconds": 0.809437,
+            "startSeconds": 1.003833,
+            "endSeconds": 1.813271
+          },
+          "maximumSilenceSeconds": 0.5
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "UNEXPECTED_SILENCE:10:18",
+        "revision": {
+          "status": "regressed",
+          "fingerprint": "7cc2fac6941da2a73355",
+          "identity": "99b2ea2d3bc98175e869",
+          "baselineFingerprint": "7cc2fac6941da2a73355",
+          "severityDelta": 0,
+          "metricDelta": 0.109437,
+          "currentMetric": 0.309437,
+          "baselineMetric": 0.2
+        }
+      },
+      "baseline": {
+        "code": "UNEXPECTED_SILENCE",
+        "severity": "warning",
+        "message": "Audio is silent for 0.70 seconds from 1.00s.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "details": {
+          "actual": {
+            "durationSeconds": 0.7,
+            "startSeconds": 1.003833,
+            "endSeconds": 1.703833
+          },
+          "maximumSilenceSeconds": 0.5
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "UNEXPECTED_SILENCE:10:18"
+      },
+      "change": {
+        "status": "regressed",
+        "fingerprint": "7cc2fac6941da2a73355",
+        "identity": "99b2ea2d3bc98175e869",
+        "baselineFingerprint": "7cc2fac6941da2a73355",
+        "severityDelta": 0,
+        "metricDelta": 0.109437,
+        "currentMetric": 0.309437,
+        "baselineMetric": 0.2
+      }
+    },
+    {
+      "status": "regressed",
+      "fingerprint": "77871a599dfe9dbcf1cb",
+      "current": {
+        "code": "EXPECTED_MOTION_MISSING",
+        "severity": "error",
+        "message": "Expected motion cta-motion averaged 0.0000, below 0.02.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-motion",
+          "kind": "motion",
+          "expected": {
+            "minimumChange": 0.02
+          },
+          "actual": {
+            "averageChange": 0,
+            "maximumChange": 0
+          },
+          "minimumChange": 0.02
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "EXPECTED_MOTION_MISSING:10:19",
+        "revision": {
+          "status": "regressed",
+          "fingerprint": "77871a599dfe9dbcf1cb",
+          "identity": "ca4576c61465a97f3121",
+          "baselineFingerprint": "77871a599dfe9dbcf1cb",
+          "severityDelta": 0,
+          "metricDelta": 0.005,
+          "currentMetric": 0.02,
+          "baselineMetric": 0.015
+        }
+      },
+      "baseline": {
+        "code": "EXPECTED_MOTION_MISSING",
+        "severity": "error",
+        "message": "Expected motion cta-motion averaged 0.0050, below 0.02.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-motion",
+          "kind": "motion",
+          "expected": {
+            "minimumChange": 0.02
+          },
+          "actual": {
+            "averageChange": 0.005,
+            "maximumChange": 0
+          },
+          "minimumChange": 0.02
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "EXPECTED_MOTION_MISSING:10:19"
+      },
+      "change": {
+        "status": "regressed",
+        "fingerprint": "77871a599dfe9dbcf1cb",
+        "identity": "ca4576c61465a97f3121",
+        "baselineFingerprint": "77871a599dfe9dbcf1cb",
+        "severityDelta": 0,
+        "metricDelta": 0.005,
+        "currentMetric": 0.02,
+        "baselineMetric": 0.015
+      }
+    },
+    {
+      "status": "improved",
+      "fingerprint": "ea821f77a162eb39ac2a",
+      "current": {
+        "code": "TEXT_TOO_SMALL",
+        "severity": "error",
+        "message": "Declared text cta-copy is 22px, below 32px.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-copy",
+          "kind": "text",
+          "expected": {
+            "minimumPx": 32,
+            "maximumLines": 2
+          },
+          "actual": {
+            "fontSizePx": 22
+          },
+          "minimumPx": 32
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "TEXT_TOO_SMALL:10:19",
+        "revision": {
+          "status": "improved",
+          "fingerprint": "ea821f77a162eb39ac2a",
+          "identity": "8afecfbc3a50287c362f",
+          "baselineFingerprint": "ea821f77a162eb39ac2a",
+          "severityDelta": 0,
+          "metricDelta": -2,
+          "currentMetric": 10,
+          "baselineMetric": 12
+        }
+      },
+      "baseline": {
+        "code": "TEXT_TOO_SMALL",
+        "severity": "error",
+        "message": "Declared text cta-copy is 20px, below 32px.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-copy",
+          "kind": "text",
+          "expected": {
+            "minimumPx": 32,
+            "maximumLines": 2
+          },
+          "actual": {
+            "fontSizePx": 20
+          },
+          "minimumPx": 32
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "TEXT_TOO_SMALL:10:19"
+      },
+      "change": {
+        "status": "improved",
+        "fingerprint": "ea821f77a162eb39ac2a",
+        "identity": "8afecfbc3a50287c362f",
+        "baselineFingerprint": "ea821f77a162eb39ac2a",
+        "severityDelta": 0,
+        "metricDelta": -2,
+        "currentMetric": 10,
+        "baselineMetric": 12
+      }
+    },
+    {
+      "status": "unchanged",
+      "fingerprint": "51c6178313880d8506aa",
+      "current": {
+        "code": "TEXT_TOO_MANY_LINES",
+        "severity": "error",
+        "message": "Declared text cta-copy uses 3 lines, above 2.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-copy",
+          "kind": "text",
+          "expected": {
+            "minimumPx": 32,
+            "maximumLines": 2
+          },
+          "actual": {
+            "lineCount": 3
+          },
+          "maximumLines": 2
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "TEXT_TOO_MANY_LINES:10:19",
+        "revision": {
+          "status": "unchanged",
+          "fingerprint": "51c6178313880d8506aa",
+          "identity": "18b879b49271a5c35d86",
+          "baselineFingerprint": "51c6178313880d8506aa",
+          "severityDelta": 0,
+          "metricDelta": 0,
+          "currentMetric": 1,
+          "baselineMetric": 1
+        }
+      },
+      "baseline": {
+        "code": "TEXT_TOO_MANY_LINES",
+        "severity": "error",
+        "message": "Declared text cta-copy uses 3 lines, above 2.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-copy",
+          "kind": "text",
+          "expected": {
+            "minimumPx": 32,
+            "maximumLines": 2
+          },
+          "actual": {
+            "lineCount": 3
+          },
+          "maximumLines": 2
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "TEXT_TOO_MANY_LINES:10:19"
+      },
+      "change": {
+        "status": "unchanged",
+        "fingerprint": "51c6178313880d8506aa",
+        "identity": "18b879b49271a5c35d86",
+        "baselineFingerprint": "51c6178313880d8506aa",
+        "severityDelta": 0,
+        "metricDelta": 0,
+        "currentMetric": 1,
+        "baselineMetric": 1
+      }
+    },
+    {
+      "status": "new",
+      "fingerprint": "5cf2a02bee890959e798",
+      "current": {
+        "code": "SAFE_AREA_VIOLATION",
+        "severity": "error",
+        "message": "Region cta-primary violates the declared safe area.",
+        "frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "CTA",
+          "component": "CtaButton",
+          "file": "src/scenes/CtaScene.tsx",
+          "line": 42
+        },
+        "details": {
+          "assertionId": "cta-safe",
+          "kind": "safe-area",
+          "expected": {
+            "platform": "x-video",
+            "marginRatio": 0.05
+          },
+          "actual": {
+            "box": {
+              "x": 0.1,
+              "y": 0.78,
+              "width": 0.8,
+              "height": 0.16
+            },
+            "overlappingZones": [
+              "player-controls"
+            ]
+          },
+          "marginRatio": 0.05,
+          "platform": "x-video"
+        },
+        "contexts": [
+          {
+            "id": "cta-primary",
+            "role": "cta",
+            "source": {
+              "composition": "ProductLaunch",
+              "sequence": "CTA",
+              "component": "CtaButton",
+              "file": "src/scenes/CtaScene.tsx",
+              "line": 42
+            },
+            "from": 10,
+            "to": 19
+          }
+        ],
+        "fixPacketId": "SAFE_AREA_VIOLATION:10:19",
+        "revision": {
+          "status": "new",
+          "fingerprint": "5cf2a02bee890959e798",
+          "identity": "a8934538e306b2428a67"
+        }
+      },
+      "change": {
+        "status": "new",
+        "fingerprint": "5cf2a02bee890959e798",
+        "identity": "a8934538e306b2428a67"
+      }
+    },
+    {
+      "status": "resolved",
+      "fingerprint": "c0f7b1b025070fa83f1d",
+      "baseline": {
+        "code": "AUDIO_TRUE_PEAK_TOO_HIGH",
+        "severity": "warning",
+        "message": "Audio true peak was -0.2 dBTP, above -1 dBTP.",
+        "frames": [
+          4,
+          5
+        ],
+        "details": {
+          "actualDbtp": -0.2,
+          "maximumDbtp": -1,
+          "trackId": "master"
+        },
+        "source": {
+          "composition": "ProductLaunch",
+          "sequence": "Intro",
+          "component": "IntroAudio",
+          "file": "src/scenes/IntroScene.tsx",
+          "line": 18
+        },
+        "fixPacketId": "AUDIO_TRUE_PEAK_TOO_HIGH:4:5"
+      },
+      "change": {
+        "status": "resolved",
+        "fingerprint": "c0f7b1b025070fa83f1d"
+      }
+    }
+  ],
+  "currentFindings": [
+    {
+      "code": "CAPTION_TOO_SHORT",
+      "severity": "warning",
+      "message": "Caption 1 is displayed for only 400 ms.",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "details": {
+        "captionId": "1",
+        "startMs": 0,
+        "endMs": 400,
+        "text": "これは短すぎる字幕です",
+        "actualDurationMs": 400,
+        "minimumDurationMs": 650
+      },
+      "fixPacketId": "CAPTION_TOO_SHORT:0:3",
+      "revision": {
+        "status": "unchanged",
+        "fingerprint": "212243b3859686c42106",
+        "identity": "6170336ae0ce8244ddd6",
+        "baselineFingerprint": "212243b3859686c42106",
+        "severityDelta": 0,
+        "metricDelta": 0,
+        "currentMetric": 250,
+        "baselineMetric": 250
+      }
+    },
+    {
+      "code": "CAPTION_TOO_FAST",
+      "severity": "warning",
+      "message": "Caption 1 requires 27.5 characters per second.",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "details": {
+        "captionId": "1",
+        "startMs": 0,
+        "endMs": 400,
+        "text": "これは短すぎる字幕です",
+        "actualCharactersPerSecond": 27.5,
+        "maximumCharactersPerSecond": 20
+      },
+      "fixPacketId": "CAPTION_TOO_FAST:0:3",
+      "revision": {
+        "status": "regressed",
+        "fingerprint": "0e16818c7c4f462b6e89",
+        "identity": "05b060a9a0f74c343a46",
+        "baselineFingerprint": "0e16818c7c4f462b6e89",
+        "severityDelta": 0,
+        "metricDelta": 0.275,
+        "currentMetric": 1.375,
+        "baselineMetric": 1.1
+      }
+    },
+    {
+      "code": "CAPTION_OVERLAP",
+      "severity": "error",
+      "message": "Captions 1 and 2 overlap by 50 ms.",
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "details": {
+        "captionId": "1",
+        "startMs": 0,
+        "endMs": 400,
+        "text": "これは短すぎる字幕です",
+        "nextCaptionId": "2",
+        "overlapMs": 50
+      },
+      "fixPacketId": "CAPTION_OVERLAP:0:3",
+      "revision": {
+        "status": "new",
+        "fingerprint": "a2fd083f916c60927657",
+        "identity": "252b2896ab2f03498765"
+      }
+    },
+    {
+      "code": "CAPTION_LINE_TOO_LONG",
+      "severity": "warning",
+      "message": "Caption 2 has a 23-character line.",
+      "frames": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "details": {
+        "captionId": "2",
+        "startMs": 350,
+        "endMs": 1800,
+        "text": "CTAと重なる可能性のある長い字幕テキストです",
+        "actualLineLength": 23,
+        "maximumLineLength": 16,
+        "language": "ja"
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "CAPTION_LINE_TOO_LONG:3:17",
+      "revision": {
+        "status": "improved",
+        "fingerprint": "3dc9670177ec6fce9783",
+        "identity": "ec3908b60aad09cd8903",
+        "baselineFingerprint": "3dc9670177ec6fce9783",
+        "severityDelta": 0,
+        "metricDelta": -3,
+        "currentMetric": 7,
+        "baselineMetric": 10
+      }
+    },
+    {
+      "code": "CAPTION_REGION_COLLISION",
+      "severity": "error",
+      "message": "Caption 2 overlaps declared region cta-primary.",
+      "frames": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "details": {
+        "captionId": "2",
+        "startMs": 350,
+        "endMs": 1800,
+        "text": "CTAと重なる可能性のある長い字幕テキストです",
+        "regionId": "cta-primary",
+        "captionBox": {
+          "x": 0.08,
+          "y": 0.72,
+          "width": 0.84,
+          "height": 0.2
+        },
+        "regionBox": {
+          "x": 0.1,
+          "y": 0.78,
+          "width": 0.8,
+          "height": 0.16
+        }
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "CAPTION_REGION_COLLISION:3:17",
+      "revision": {
+        "status": "accepted",
+        "fingerprint": "187b75825e1a9c3a3ab0",
+        "identity": "7eb5deabbff7134f2670",
+        "baselineFingerprint": "187b75825e1a9c3a3ab0",
+        "acceptedBy": {
+          "reason": "Approved CTA-caption overlap for this end card",
+          "owner": "video-team"
+        },
+        "severityDelta": 0
+      }
+    },
+    {
+      "code": "UNEXPECTED_SILENCE",
+      "severity": "warning",
+      "message": "Audio is silent for 0.81 seconds from 1.00s.",
+      "frames": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "details": {
+        "actual": {
+          "durationSeconds": 0.809437,
+          "startSeconds": 1.003833,
+          "endSeconds": 1.813271
+        },
+        "maximumSilenceSeconds": 0.5
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "UNEXPECTED_SILENCE:10:18",
+      "revision": {
+        "status": "regressed",
+        "fingerprint": "7cc2fac6941da2a73355",
+        "identity": "99b2ea2d3bc98175e869",
+        "baselineFingerprint": "7cc2fac6941da2a73355",
+        "severityDelta": 0,
+        "metricDelta": 0.109437,
+        "currentMetric": 0.309437,
+        "baselineMetric": 0.2
+      }
+    },
+    {
+      "code": "EXPECTED_MOTION_MISSING",
+      "severity": "error",
+      "message": "Expected motion cta-motion averaged 0.0000, below 0.02.",
+      "frames": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "details": {
+        "assertionId": "cta-motion",
+        "kind": "motion",
+        "expected": {
+          "minimumChange": 0.02
+        },
+        "actual": {
+          "averageChange": 0,
+          "maximumChange": 0
+        },
+        "minimumChange": 0.02
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "EXPECTED_MOTION_MISSING:10:19",
+      "revision": {
+        "status": "regressed",
+        "fingerprint": "77871a599dfe9dbcf1cb",
+        "identity": "ca4576c61465a97f3121",
+        "baselineFingerprint": "77871a599dfe9dbcf1cb",
+        "severityDelta": 0,
+        "metricDelta": 0.005,
+        "currentMetric": 0.02,
+        "baselineMetric": 0.015
+      }
+    },
+    {
+      "code": "TEXT_TOO_SMALL",
+      "severity": "error",
+      "message": "Declared text cta-copy is 22px, below 32px.",
+      "frames": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "details": {
+        "assertionId": "cta-copy",
+        "kind": "text",
+        "expected": {
+          "minimumPx": 32,
+          "maximumLines": 2
+        },
+        "actual": {
+          "fontSizePx": 22
+        },
+        "minimumPx": 32
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "TEXT_TOO_SMALL:10:19",
+      "revision": {
+        "status": "improved",
+        "fingerprint": "ea821f77a162eb39ac2a",
+        "identity": "8afecfbc3a50287c362f",
+        "baselineFingerprint": "ea821f77a162eb39ac2a",
+        "severityDelta": 0,
+        "metricDelta": -2,
+        "currentMetric": 10,
+        "baselineMetric": 12
+      }
+    },
+    {
+      "code": "TEXT_TOO_MANY_LINES",
+      "severity": "error",
+      "message": "Declared text cta-copy uses 3 lines, above 2.",
+      "frames": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "details": {
+        "assertionId": "cta-copy",
+        "kind": "text",
+        "expected": {
+          "minimumPx": 32,
+          "maximumLines": 2
+        },
+        "actual": {
+          "lineCount": 3
+        },
+        "maximumLines": 2
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "TEXT_TOO_MANY_LINES:10:19",
+      "revision": {
+        "status": "unchanged",
+        "fingerprint": "51c6178313880d8506aa",
+        "identity": "18b879b49271a5c35d86",
+        "baselineFingerprint": "51c6178313880d8506aa",
+        "severityDelta": 0,
+        "metricDelta": 0,
+        "currentMetric": 1,
+        "baselineMetric": 1
+      }
+    },
+    {
+      "code": "SAFE_AREA_VIOLATION",
+      "severity": "error",
+      "message": "Region cta-primary violates the declared safe area.",
+      "frames": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "details": {
+        "assertionId": "cta-safe",
+        "kind": "safe-area",
+        "expected": {
+          "platform": "x-video",
+          "marginRatio": 0.05
+        },
+        "actual": {
+          "box": {
+            "x": 0.1,
+            "y": 0.78,
+            "width": 0.8,
+            "height": 0.16
+          },
+          "overlappingZones": [
+            "player-controls"
+          ]
+        },
+        "marginRatio": 0.05,
+        "platform": "x-video"
+      },
+      "contexts": [
+        {
+          "id": "cta-primary",
+          "role": "cta",
+          "source": {
+            "composition": "ProductLaunch",
+            "sequence": "CTA",
+            "component": "CtaButton",
+            "file": "src/scenes/CtaScene.tsx",
+            "line": 42
+          },
+          "from": 10,
+          "to": 19
+        }
+      ],
+      "fixPacketId": "SAFE_AREA_VIOLATION:10:19",
+      "revision": {
+        "status": "new",
+        "fingerprint": "5cf2a02bee890959e798",
+        "identity": "a8934538e306b2428a67"
+      }
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "code": "AUDIO_TRUE_PEAK_TOO_HIGH",
+      "severity": "warning",
+      "message": "Audio true peak was -0.2 dBTP, above -1 dBTP.",
+      "frames": [
+        4,
+        5
+      ],
+      "details": {
+        "actualDbtp": -0.2,
+        "maximumDbtp": -1,
+        "trackId": "master"
+      },
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "Intro",
+        "component": "IntroAudio",
+        "file": "src/scenes/IntroScene.tsx",
+        "line": 18
+      },
+      "fixPacketId": "AUDIO_TRUE_PEAK_TOO_HIGH:4:5"
+    }
+  ],
+  "acceptances": {
+    "count": 1
+  }
+}

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FrameProof Video QA" tests="9" failures="5" errors="0" skipped="0" time="0"><properties><property name="warnings" value="4"/><property name="input" value="examples/source-aware/output/demo.mp4"/></properties><testcase classname="frameproof.CAPTION_TOO_SHORT" name="CAPTION_TOO_SHORT @ frame 0" time="0"><system-out>{
+  &quot;message&quot;: &quot;Caption 1 is displayed for only 400 ms.&quot;,
+  &quot;details&quot;: {
+    &quot;captionId&quot;: &quot;1&quot;,
+    &quot;startMs&quot;: 0,
+    &quot;endMs&quot;: 400,
+    &quot;text&quot;: &quot;これは短すぎる字幕です&quot;,
+    &quot;actualDurationMs&quot;: 400,
+    &quot;minimumDurationMs&quot;: 650
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;unchanged&quot;,
+    &quot;fingerprint&quot;: &quot;212243b3859686c42106&quot;,
+    &quot;identity&quot;: &quot;6170336ae0ce8244ddd6&quot;,
+    &quot;baselineFingerprint&quot;: &quot;212243b3859686c42106&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: 0,
+    &quot;currentMetric&quot;: 250,
+    &quot;baselineMetric&quot;: 250
+  }
+}</system-out></testcase><testcase classname="frameproof.CAPTION_TOO_FAST" name="CAPTION_TOO_FAST @ frame 0" time="0"><system-out>{
+  &quot;message&quot;: &quot;Caption 1 requires 27.5 characters per second.&quot;,
+  &quot;details&quot;: {
+    &quot;captionId&quot;: &quot;1&quot;,
+    &quot;startMs&quot;: 0,
+    &quot;endMs&quot;: 400,
+    &quot;text&quot;: &quot;これは短すぎる字幕です&quot;,
+    &quot;actualCharactersPerSecond&quot;: 27.5,
+    &quot;maximumCharactersPerSecond&quot;: 20
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;regressed&quot;,
+    &quot;fingerprint&quot;: &quot;0e16818c7c4f462b6e89&quot;,
+    &quot;identity&quot;: &quot;05b060a9a0f74c343a46&quot;,
+    &quot;baselineFingerprint&quot;: &quot;0e16818c7c4f462b6e89&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: 0.275,
+    &quot;currentMetric&quot;: 1.375,
+    &quot;baselineMetric&quot;: 1.1
+  }
+}</system-out></testcase><testcase classname="frameproof.CAPTION_OVERLAP" name="CAPTION_OVERLAP @ frame 0" time="0"><failure message="Captions 1 and 2 overlap by 50 ms." type="CAPTION_OVERLAP">{
+  &quot;details&quot;: {
+    &quot;captionId&quot;: &quot;1&quot;,
+    &quot;startMs&quot;: 0,
+    &quot;endMs&quot;: 400,
+    &quot;text&quot;: &quot;これは短すぎる字幕です&quot;,
+    &quot;nextCaptionId&quot;: &quot;2&quot;,
+    &quot;overlapMs&quot;: 50
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;new&quot;,
+    &quot;fingerprint&quot;: &quot;a2fd083f916c60927657&quot;,
+    &quot;identity&quot;: &quot;252b2896ab2f03498765&quot;
+  }
+}</failure></testcase><testcase classname="frameproof.CAPTION_LINE_TOO_LONG" name="CAPTION_LINE_TOO_LONG @ frame 3" time="0"><system-out>{
+  &quot;message&quot;: &quot;Caption 2 has a 23-character line.&quot;,
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;details&quot;: {
+    &quot;captionId&quot;: &quot;2&quot;,
+    &quot;startMs&quot;: 350,
+    &quot;endMs&quot;: 1800,
+    &quot;text&quot;: &quot;CTAと重なる可能性のある長い字幕テキストです&quot;,
+    &quot;actualLineLength&quot;: 23,
+    &quot;maximumLineLength&quot;: 16,
+    &quot;language&quot;: &quot;ja&quot;
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;improved&quot;,
+    &quot;fingerprint&quot;: &quot;3dc9670177ec6fce9783&quot;,
+    &quot;identity&quot;: &quot;ec3908b60aad09cd8903&quot;,
+    &quot;baselineFingerprint&quot;: &quot;3dc9670177ec6fce9783&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: -3,
+    &quot;currentMetric&quot;: 7,
+    &quot;baselineMetric&quot;: 10
+  }
+}</system-out></testcase><testcase classname="frameproof.UNEXPECTED_SILENCE" name="UNEXPECTED_SILENCE @ frame 10" time="0"><system-out>{
+  &quot;message&quot;: &quot;Audio is silent for 0.81 seconds from 1.00s.&quot;,
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;details&quot;: {
+    &quot;actual&quot;: {
+      &quot;durationSeconds&quot;: 0.809437,
+      &quot;startSeconds&quot;: 1.003833,
+      &quot;endSeconds&quot;: 1.813271
+    },
+    &quot;maximumSilenceSeconds&quot;: 0.5
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;regressed&quot;,
+    &quot;fingerprint&quot;: &quot;7cc2fac6941da2a73355&quot;,
+    &quot;identity&quot;: &quot;99b2ea2d3bc98175e869&quot;,
+    &quot;baselineFingerprint&quot;: &quot;7cc2fac6941da2a73355&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: 0.109437,
+    &quot;currentMetric&quot;: 0.309437,
+    &quot;baselineMetric&quot;: 0.2
+  }
+}</system-out></testcase><testcase classname="frameproof.EXPECTED_MOTION_MISSING" name="EXPECTED_MOTION_MISSING @ frame 10" time="0"><failure message="Expected motion cta-motion averaged 0.0000, below 0.02." type="EXPECTED_MOTION_MISSING">{
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;details&quot;: {
+    &quot;assertionId&quot;: &quot;cta-motion&quot;,
+    &quot;kind&quot;: &quot;motion&quot;,
+    &quot;expected&quot;: {
+      &quot;minimumChange&quot;: 0.02
+    },
+    &quot;actual&quot;: {
+      &quot;averageChange&quot;: 0,
+      &quot;maximumChange&quot;: 0
+    },
+    &quot;minimumChange&quot;: 0.02
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;regressed&quot;,
+    &quot;fingerprint&quot;: &quot;77871a599dfe9dbcf1cb&quot;,
+    &quot;identity&quot;: &quot;ca4576c61465a97f3121&quot;,
+    &quot;baselineFingerprint&quot;: &quot;77871a599dfe9dbcf1cb&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: 0.005,
+    &quot;currentMetric&quot;: 0.02,
+    &quot;baselineMetric&quot;: 0.015
+  }
+}</failure></testcase><testcase classname="frameproof.TEXT_TOO_SMALL" name="TEXT_TOO_SMALL @ frame 10" time="0"><failure message="Declared text cta-copy is 22px, below 32px." type="TEXT_TOO_SMALL">{
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;details&quot;: {
+    &quot;assertionId&quot;: &quot;cta-copy&quot;,
+    &quot;kind&quot;: &quot;text&quot;,
+    &quot;expected&quot;: {
+      &quot;minimumPx&quot;: 32,
+      &quot;maximumLines&quot;: 2
+    },
+    &quot;actual&quot;: {
+      &quot;fontSizePx&quot;: 22
+    },
+    &quot;minimumPx&quot;: 32
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;improved&quot;,
+    &quot;fingerprint&quot;: &quot;ea821f77a162eb39ac2a&quot;,
+    &quot;identity&quot;: &quot;8afecfbc3a50287c362f&quot;,
+    &quot;baselineFingerprint&quot;: &quot;ea821f77a162eb39ac2a&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: -2,
+    &quot;currentMetric&quot;: 10,
+    &quot;baselineMetric&quot;: 12
+  }
+}</failure></testcase><testcase classname="frameproof.TEXT_TOO_MANY_LINES" name="TEXT_TOO_MANY_LINES @ frame 10" time="0"><failure message="Declared text cta-copy uses 3 lines, above 2." type="TEXT_TOO_MANY_LINES">{
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;details&quot;: {
+    &quot;assertionId&quot;: &quot;cta-copy&quot;,
+    &quot;kind&quot;: &quot;text&quot;,
+    &quot;expected&quot;: {
+      &quot;minimumPx&quot;: 32,
+      &quot;maximumLines&quot;: 2
+    },
+    &quot;actual&quot;: {
+      &quot;lineCount&quot;: 3
+    },
+    &quot;maximumLines&quot;: 2
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;unchanged&quot;,
+    &quot;fingerprint&quot;: &quot;51c6178313880d8506aa&quot;,
+    &quot;identity&quot;: &quot;18b879b49271a5c35d86&quot;,
+    &quot;baselineFingerprint&quot;: &quot;51c6178313880d8506aa&quot;,
+    &quot;severityDelta&quot;: 0,
+    &quot;metricDelta&quot;: 0,
+    &quot;currentMetric&quot;: 1,
+    &quot;baselineMetric&quot;: 1
+  }
+}</failure></testcase><testcase classname="frameproof.SAFE_AREA_VIOLATION" name="SAFE_AREA_VIOLATION @ frame 10" time="0"><failure message="Region cta-primary violates the declared safe area." type="SAFE_AREA_VIOLATION">{
+  &quot;source&quot;: {
+    &quot;composition&quot;: &quot;ProductLaunch&quot;,
+    &quot;sequence&quot;: &quot;CTA&quot;,
+    &quot;component&quot;: &quot;CtaButton&quot;,
+    &quot;file&quot;: &quot;src/scenes/CtaScene.tsx&quot;,
+    &quot;line&quot;: 42
+  },
+  &quot;details&quot;: {
+    &quot;assertionId&quot;: &quot;cta-safe&quot;,
+    &quot;kind&quot;: &quot;safe-area&quot;,
+    &quot;expected&quot;: {
+      &quot;platform&quot;: &quot;x-video&quot;,
+      &quot;marginRatio&quot;: 0.05
+    },
+    &quot;actual&quot;: {
+      &quot;box&quot;: {
+        &quot;x&quot;: 0.1,
+        &quot;y&quot;: 0.78,
+        &quot;width&quot;: 0.8,
+        &quot;height&quot;: 0.16
+      },
+      &quot;overlappingZones&quot;: [
+        &quot;player-controls&quot;
+      ]
+    },
+    &quot;marginRatio&quot;: 0.05,
+    &quot;platform&quot;: &quot;x-video&quot;
+  },
+  &quot;revision&quot;: {
+    &quot;status&quot;: &quot;new&quot;,
+    &quot;fingerprint&quot;: &quot;5cf2a02bee890959e798&quot;,
+    &quot;identity&quot;: &quot;a8934538e306b2428a67&quot;
+  }
+}</failure></testcase></testsuite>

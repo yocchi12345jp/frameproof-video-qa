@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yocchi12345jp/frameproof-video-qa/blob/main/docs/frameproof-manifest.schema.json",
+  "title": "FrameProof Render Manifest",
+  "type": "object",
+  "required": ["schemaVersion", "compositionId", "fps", "durationInFrames"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "compositionId": {"type": "string", "minLength": 1},
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "durationInFrames": {"type": "integer", "minimum": 1},
+    "width": {"type": "integer", "minimum": 1},
+    "height": {"type": "integer", "minimum": 1},
+    "projectRoot": {"type": "string"},
+    "regions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/region"}
+    },
+    "assertions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/assertion"}
+    }
+  },
+  "$defs": {
+    "source": {
+      "oneOf": [
+        {"type": "string"},
+        {
+          "type": "object",
+          "properties": {
+            "composition": {"type": "string"},
+            "sequence": {"type": "string"},
+            "component": {"type": "string"},
+            "file": {"type": "string"},
+            "line": {"type": "integer", "minimum": 1},
+            "column": {"type": "integer", "minimum": 1}
+          }
+        }
+      ]
+    },
+    "box": {
+      "type": "object",
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {"type": "number", "minimum": 0, "maximum": 1},
+        "y": {"type": "number", "minimum": 0, "maximum": 1},
+        "width": {"type": "number", "minimum": 0, "maximum": 1},
+        "height": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "region": {
+      "type": "object",
+      "required": ["id", "from", "to"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "type": {"type": "string"},
+        "from": {"type": "integer", "minimum": 0},
+        "to": {"type": "integer", "minimum": 0},
+        "role": {"type": "string"},
+        "source": {"$ref": "#/$defs/source"},
+        "box": {"$ref": "#/$defs/box"},
+        "style": {"type": "object"},
+        "metadata": {"type": "object"}
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "required": ["id", "kind", "from", "to"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["motion", "text", "visible", "audio", "safe-area"]},
+        "from": {"type": "integer", "minimum": 0},
+        "to": {"type": "integer", "minimum": 0},
+        "regionId": {"type": "string"},
+        "source": {"$ref": "#/$defs/source"},
+        "severity": {"enum": ["error", "warning"]},
+        "expected": {"type": "object"},
+        "actual": {"type": "object"},
+        "metadata": {"type": "object"}
+      }
+    }
+  }
+}

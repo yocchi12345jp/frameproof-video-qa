@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "compositionId": "ProductLaunch",
+  "fps": 10,
+  "durationInFrames": 20,
+  "width": 320,
+  "height": 180,
+  "regions": [
+    {
+      "id": "cta-primary",
+      "type": "component",
+      "from": 10,
+      "to": 19,
+      "role": "cta",
+      "source": {
+        "composition": "ProductLaunch",
+        "sequence": "CTA",
+        "component": "CtaButton",
+        "file": "src/scenes/CtaScene.tsx",
+        "line": 42
+      },
+      "box": {"x": 0.1, "y": 0.78, "width": 0.8, "height": 0.16},
+      "style": {"fontSizePx": 22, "lineCount": 3}
+    }
+  ],
+  "assertions": [
+    {"id": "cta-motion", "kind": "motion", "from": 10, "to": 19, "regionId": "cta-primary", "expected": {"minimumChange": 0.02}},
+    {"id": "cta-copy", "kind": "text", "from": 10, "to": 19, "regionId": "cta-primary", "expected": {"minimumPx": 32, "maximumLines": 2}},
+    {"id": "cta-safe", "kind": "safe-area", "from": 10, "to": 19, "regionId": "cta-primary", "expected": {"platform": "x-video", "marginRatio": 0.05}}
+  ]
+}

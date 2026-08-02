@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0",
+  "repairSessionId": "repair-2026-08-02T14-19-03-c822cb2c",
+  "approvedAt": "2026-08-02T14:19:03.919Z",
+  "owner": "integration-reviewer",
+  "reason": "CLI integration reviewed",
+  "verification": {
+    "verifiedAt": "2026-08-02T14:19:03.859Z",
+    "video": "/path/to/programmatic-video/.frameproof/repaired.mp4",
+    "passed": true,
+    "currentReportPath": "/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/current-report.json",
+    "revisionPath": "/path/to/programmatic-video/.frameproof/repairs/repair-2026-08-02T14-19-03-c822cb2c/verification/repair-revision.json",
+    "summary": {
+      "new": 1,
+      "regressed": 0,
+      "improved": 0,
+      "unchanged": 0,
+      "accepted": 0,
+      "resolved": 2,
+      "blocking": 0,
+      "warningRegressions": 1,
+      "passed": true
+    },
+    "targetCount": 2,
+    "unresolvedTargetCount": 0,
+    "unresolvedTargets": [],
+    "newOrRegressedErrorCount": 0
+  },
+  "git": {
+    "head": "82684153da84f1b3cc5769f298ad28199501c8f6",
+    "changedFiles": [
+      "src/scene.js"
+    ],
+    "fileHashes": {
+      "src/scene.js": "ad4ce4306472d192850884cc10fc66432f957d2dbd39dceccbc4a4b76aa21196"
+    },
+    "diffSha256": "e8d0befb5596cb83ade52d1f46d4ed2d1a79bb9a8465f640f45988a4ffa4b49d"
+  },
+  "receiptSha256": "f7a4f34fa845044e57786ae9db8c2483fa7967258f1e31a369cf15039f2f76bf"
+}
