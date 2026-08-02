@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 
 test('canonical Agent Skill remains portable across Claude Code and Codex', async () => {
-  const skill = await readFile(new URL('../skills/generated-video-auditor/SKILL.md', import.meta.url), 'utf8');
+  const skill = (await readFile(new URL('../skills/generated-video-auditor/SKILL.md', import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
   assert.match(skill, /^---\n[\s\S]*?name:\s*generated-video-auditor/m);
   assert.doesNotMatch(skill, /context:\s*fork|\$\{CLAUDE_SKILL_DIR\}|mcp__/);
 });

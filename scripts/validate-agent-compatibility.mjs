@@ -11,7 +11,7 @@ const requiredFiles = [
 
 for (const file of requiredFiles) await access(file);
 
-const skill = await readFile('skills/generated-video-auditor/SKILL.md', 'utf8');
+const skill = (await readFile('skills/generated-video-auditor/SKILL.md', 'utf8')).replaceAll('\r\n', '\n');
 const frontmatter = skill.match(/^---\n([\s\S]*?)\n---\n/);
 if (!frontmatter) throw new Error('Canonical SKILL.md must begin with YAML frontmatter');
 if (!/^name:\s*generated-video-auditor\s*$/m.test(frontmatter[1])) {
